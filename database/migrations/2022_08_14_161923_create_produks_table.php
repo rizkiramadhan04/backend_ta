@@ -19,7 +19,7 @@ class CreateProduksTable extends Migration
             $table->integer('jml_masuk')->nullable();
             $table->integer('jml_keluar')->nullable();
             $table->integer('total')->nullable();
-            $table->integer('tgl_produk_masuk')->nullable();
+            $table->date('tgl_produk_masuk')->nullable();
             $table->integer('harga_jual')->nullable();
             $table->integer('harga_beli')->nullable();
 
