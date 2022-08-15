@@ -12,7 +12,22 @@ use Exception;
 class ProdukController extends Controller
 {
     public function index() {
+        $produk = Produk::all();
 
+        if ($produk) {
+            $response = [
+                'status' => 'success',
+                'data' => $produk,
+            ];
+        } else {
+            $response = [
+                'status' => 'failed',
+                'data' => [],
+                'message' => 'Data tidak ada !'
+            ];
+        }
+
+        return response()->json($response, 200);
     }
 
     public function create(Request $request) {
@@ -53,6 +68,7 @@ class ProdukController extends Controller
 
             $response = [
             'status' => 'success',
+            'id' => $produk->id,
             'nama_product' => $produk->nama_product,
             'jml_masuk' => $produk->jml_masuk,
             'jml_keluar' => $produk->jml_keluar,
@@ -116,6 +132,7 @@ class ProdukController extends Controller
 
             $response = [
             'status' => 'success',
+            'id' => $produk->id,
             'nama_product' => $produk->nama_product,
             'jml_masuk' => $produk->jml_masuk,
             'jml_keluar' => $produk->jml_keluar,
@@ -134,6 +151,26 @@ class ProdukController extends Controller
                 'status' => 'failed',
                 'messages' => $e->getMessage(),
             ];
+        }
+
+        return response()->json($response, 200);
+    }
+
+    public function delete(Request $request) {
+        $produk = Produk::findOrFail($request->id);
+        $produk->delete();
+
+
+        if ($produk) {
+            $response = [
+                'status' => 'success',
+                'message' => 'Hapus Data Berhasil !',
+            ];    
+        } else {
+            $response = [
+                'status' => 'Failed',
+                'message' => 'Hapus Data Tidak  Berhasil !',
+            ];   
         }
 
         return response()->json($response, 200);
