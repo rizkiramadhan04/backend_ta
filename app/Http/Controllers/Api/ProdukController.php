@@ -76,4 +76,66 @@ class ProdukController extends Controller
         return response()->json($response, 200);
 
     }
+
+    public function update(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'nama_product' => 'required|string|max:225',
+            'jml_masuk' => 'required|integer|max:225',
+            'jml_keluar' => 'required|integer|max:225',
+            'total' => 'required|integer|max:225',
+            'tgl_produk_masuk' => 'required',
+            'harga_jual' => 'required|integer|max:225',
+            'harga_beli' => 'required|integer|max:225',
+        ]);
+
+        if ($validator->fails()) {
+            $response = [
+                'status' => 'failed',
+                'messages' => $validator->errors(),
+            ];
+        }
+
+        $produk = Produk::whereId($request->input('id'))->first();
+        $time = strtotime($request->tgl_produk_masuk);
+        $tgl_produk_masuk = date("Y-m-d", $time);
+        
+        DB::beginTransaction();
+        try {
+            
+            $produk->update([
+                'nama_product' => $request->input('nama_product'),
+                'jml_masuk' => $request->input('jml_masuk'),
+                'jml_keluar' => $request->input('jml_keluar'),
+                'total' => $request->input('total'),
+                'tgl_produk_masuk' => $tgl_produk_masuk,
+                'harga_jual' => $request->input('harga_jual'),
+                'harga_beli' => $request->input('harga_beli'),
+            ]);
+
+            $response = [
+            'status' => 'success',
+            'nama_product' => $produk->nama_product,
+            'jml_masuk' => $produk->jml_masuk,
+            'jml_keluar' => $produk->jml_keluar,
+            'total' => $produk->total,
+            'tgl_produk_masuk' => date("d-m-Y", strtotime($produk->tgl_produk_masuk)),
+            'harga_jual' => $produk->harga_jual,
+            'harga_beli' => $produk->harga_beli,
+            ];
+
+            DB::commit();
+
+        } catch (Exception $e) {
+            DB::rollback();
+            
+            $response = [
+                'status' => 'failed',
+                'messages' => $e->getMessage(),
+            ];
+        }
+
+        return response()->json($response, 200);
+    }
 }

@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/insert-produk', 'Api\ProdukController@create')->name('api.create-produk');
+Route::post('/update-produk', 'Api\ProdukController@update')->name('api.update-produk');
