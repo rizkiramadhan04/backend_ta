@@ -18,13 +18,11 @@ class CreatePenjualansTable extends Migration
             $table->string('nama_pelanggan')->nullable();
             $table->integer('no_hp')->nullable();
             $table->string('no_resi')->nullable();
-            $table->string('nama_product')->nullable();
             $table->integer('jumlah_produk')->nullable();
             $table->date('tgl_pesenan')->nullable();
-            $table->integer('harga_produk')->nullable();
             $table->integer('total_harga')->nullable();
-            $table->integer('total_jml_brg')->nullable();
-            $table->foreignId('produks_id')->constrained()->nullable();
+            $table->integer('total_jml_produk')->nullable();
+            $table->foreignId('produk_id')->constrained()->nullable();
         });
     }
 
