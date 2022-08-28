@@ -18,7 +18,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/login', 'Api\AuthController@login')->name('api.login');
+Route::post('/register', 'Api\AuthController@register')->name('api.register');
+Route::post('/logout', 'Api\AuthController@logout')->name('api.logout');
+
 Route::post('/get-produk', 'Api\ProdukController@index')->name('api.get-produk');
 Route::post('/insert-produk', 'Api\ProdukController@create')->name('api.create-produk');
 Route::post('/update-produk', 'Api\ProdukController@update')->name('api.update-produk');
 Route::post('/delete-produk', 'Api\ProdukController@delete')->name('api.delete-produk');
+
+Route::post('/insert-penjualan', 'Api\PenjualanController@create')->name('api.create-penjualan');

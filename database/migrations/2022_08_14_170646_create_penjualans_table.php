@@ -16,13 +16,15 @@ class CreatePenjualansTable extends Migration
         Schema::create('penjualans', function (Blueprint $table) {
             $table->bigIncrements('id')->nullable();
             $table->string('nama_pelanggan')->nullable();
-            $table->integer('no_hp')->nullable();
+            $table->string('no_hp',20)->nullable();
             $table->string('no_resi')->nullable();
-            $table->integer('jumlah_produk')->nullable();
-            $table->date('tgl_pesenan')->nullable();
-            $table->integer('total_harga')->nullable();
-            $table->integer('total_jml_produk')->nullable();
             $table->foreignId('produk_id')->constrained()->nullable();
+            $table->integer('jumlah')->nullable();
+            $table->date('tgl_pesenan')->nullable();
+            $table->string('harga', 25)->nullable();
+
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
