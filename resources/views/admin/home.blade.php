@@ -1,4 +1,5 @@
 @extends('layout.admin')
+@section('title', 'Dashboard Admin')
 
 @section('content')
     <!-- Begin Page Content -->
