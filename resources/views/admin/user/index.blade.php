@@ -28,11 +28,12 @@
                                 <td>{{ $obj->email }}</td>
                                 <td>{{ $obj->roles }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-success">
+                                    <a href="{{ route('admin.user-update-page', $obj->id) }}" class="btn btn-success">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="#" method="post" class="d-inline">
+                                    <form action="{{ route('admin.user-delete', $obj->id) }}" method="post"
+                                        class="d-inline">
                                         @csrf
                                         <button class="btn btn-danger">
                                             <i class="fa fa-trash"></i>

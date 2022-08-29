@@ -19,15 +19,23 @@ Route::get('/', function () {
 
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 
+//Produk
 Route::get('/produk', 'Admin\ProdukController@index')->name('admin.produk');
 Route::get('/create-produk-page', 'Admin\ProdukController@createPage')->name('admin.create-produk-page');
-Route::post('/create-produk', 'Api\ProdukController@create')->name('admin.create-produk');
-Route::get('/update-produk-page', 'Admin\ProdukController@updatePage')->name('admin.update-update-page');
-Route::post('/delete/{$id}', 'Admin\ProdukController@delete')->name('admin.delete-produk');
+Route::post('/create-produk', 'Admin\ProdukController@create')->name('admin.create-produk');
+Route::get('/update-produk-page/{id}', 'Admin\ProdukController@updatePage')->name('admin.update-produk-page');
+Route::post('/update-produk/{id}', 'Admin\ProdukController@update')->name('admin.update-produk');
+Route::post('/delete-produk/{id}', 'Admin\ProdukController@delete')->name('admin.delete-produk');
 
+//penjualan
 Route::get('/penjualan', 'Admin\PenjualanController@index')->name('admin.penjualan');
 
+//User
 Route::get('/user', 'Admin\UserController@index')->name('admin.user');
 Route::get('/user-create-page', 'Admin\UserController@createPage')->name('admin.user-create-page');
+Route::post('/user-create', 'Admin\UserController@create')->name('admin.user-create');
+Route::get('/user-update-page/{id}', 'Admin\UserController@updatePage')->name('admin.user-update-page');
+Route::post('/user-update/{id}', 'Admin\UserController@update')->name('admin.user-update');
+Route::post('/user-delete/{id}', 'Admin\UserController@delete')->name('admin.user-delete');
 
 

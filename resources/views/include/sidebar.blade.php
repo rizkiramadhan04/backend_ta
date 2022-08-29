@@ -58,9 +58,6 @@
                  <a class="collapse-item" href="{{ route('admin.create-produk-page') }}">
                      <h6 class="collapse-header">Tambah Produk Baru</h6>
                  </a>
-                 <a class="collapse-item" href="{{ route('admin.update-update-page') }}">
-                     <h6 class="collapse-header">Mengubah Produk</h6>
-                 </a>
              </div>
          </div>
      </li>

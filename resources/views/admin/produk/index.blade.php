@@ -24,9 +24,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $no = 1;
+                        @endphp
                         @forelse ($item as $obj)
                             <tr>
-                                <td>{{ $obj->id }}</td>
+                                <td>{{ $no++ }}</td>
                                 <td>{{ $obj->nama_product }}</td>
                                 <td>{{ $obj->total }}</td>
                                 <td>{{ $obj->jml_keluar }}</td>
@@ -34,11 +37,12 @@
                                 <td>{{ $obj->harga_jual }}</td>
                                 <td>{{ $obj->tgl_produk_masuk }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-success">
+                                    <a href="{{ route('admin.update-produk-page', $obj->id) }}" class="btn btn-success">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="{{ route('admin.delete-produk', $obj->id) }}" method="post" class="d-inline">
+                                    <form action="{{ route('admin.delete-produk', $obj->id) }}" method="post"
+                                        class="d-inline">
                                         @csrf
                                         <button class="btn btn-danger">
                                             <i class="fa fa-trash"></i>
