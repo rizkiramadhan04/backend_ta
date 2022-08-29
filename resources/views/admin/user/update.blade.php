@@ -9,8 +9,7 @@
             @csrf
             <div class="form-group col-xl-6 col-md-4">
                 <label for="name">Nama</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" name="name"
-                    value="{{ $user->name }}">
+                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
                 <small id="nameProduk" class="form-text text-muted">We'll never share your email with anyone
                     else.</small>
             </div>

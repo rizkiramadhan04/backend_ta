@@ -61,7 +61,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id) {
-        
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:225',
             'email' => 'required|email|unique:users',
@@ -81,6 +81,8 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
             ]);
+
+            dd($user);
 
             DB::commit();
             return redirect()->route('admin.user');
