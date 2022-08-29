@@ -1,4 +1,5 @@
 @extends('layout.admin')
+@section('title', 'Tambah User')
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex justify-content-between mb-4 text-center">

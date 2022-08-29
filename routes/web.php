@@ -21,7 +21,9 @@ Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 
 Route::get('/produk', 'Admin\ProdukController@index')->name('admin.produk');
 Route::get('/create-produk-page', 'Admin\ProdukController@createPage')->name('admin.create-produk-page');
+Route::post('/create-produk', 'Api\ProdukController@create')->name('admin.create-produk');
 Route::get('/update-produk-page', 'Admin\ProdukController@updatePage')->name('admin.update-update-page');
+Route::post('/delete/{$id}', 'Admin\ProdukController@delete')->name('admin.delete-produk');
 
 Route::get('/penjualan', 'Admin\PenjualanController@index')->name('admin.penjualan');
 

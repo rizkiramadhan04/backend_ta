@@ -1,4 +1,5 @@
 @extends('layout.admin')
+@section('title', 'Ubah Produk')
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">

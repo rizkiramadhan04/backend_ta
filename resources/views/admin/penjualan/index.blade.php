@@ -1,4 +1,5 @@
 @extends('layout.admin')
+@section('title', 'Data Penjualan')
 @section('content')
     <div class="text-center">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
