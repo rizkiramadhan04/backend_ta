@@ -65,7 +65,6 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:225',
             'email' => 'required|email|unique:users',
-            'password' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -82,7 +81,7 @@ class UserController extends Controller
                 'email' => $request->email,
             ]);
 
-            dd($user);
+            // dd($user);
 
             DB::commit();
             return redirect()->route('admin.user');
