@@ -27,6 +27,9 @@ Route::get('/update-produk-page/{id}', 'Admin\ProdukController@updatePage')->nam
 Route::post('/update-produk/{id}', 'Admin\ProdukController@update')->name('admin.update-produk');
 Route::post('/delete-produk/{id}', 'Admin\ProdukController@delete')->name('admin.delete-produk');
 
+//import
+Route::post('/import-produk', 'Import\ProdukImportController@import')->name('admin.produk.import'); 
+
 //penjualan
 Route::get('/penjualan', 'Admin\PenjualanController@index')->name('admin.penjualan');
 
