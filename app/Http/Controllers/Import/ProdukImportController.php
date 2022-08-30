@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Import;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\ProdukImport;
+use App\Exports\ProdukExport;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -40,5 +41,9 @@ class ProdukImportController extends Controller
             //redirect
             return redirect()->route('admin.produk')->with(['error' => 'Data Gagal Diimport!']);
         }
+    }
+
+    public function export() {
+        return Excel::download(new ProdukExport(), 'data_produk.xlsx');
     }
 }
