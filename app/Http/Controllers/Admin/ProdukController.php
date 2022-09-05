@@ -61,6 +61,21 @@ class ProdukController extends Controller
 
     }
 
+    public function inputPage() {
+
+        $list_produk = DB::table('produks')->get();
+
+        
+
+        return view('admin.produk.input_stock', compact('list_produk'));
+    }
+
+    public function getStockProduct(Request $request) {
+        $produk_stock = DB::table('produks')->where('id', $request->produk_id)->first();
+
+        return response()->json($produk_stock);
+    }
+
     public function updatePage($id) {
         $produk = Produk::where('id', $id)->first();
         return view('admin.produk.update', compact('produk'));

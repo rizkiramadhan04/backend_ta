@@ -23,6 +23,8 @@ Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 Route::get('/produk', 'Admin\ProdukController@index')->name('admin.produk');
 Route::get('/create-produk-page', 'Admin\ProdukController@createPage')->name('admin.create-produk-page');
 Route::post('/create-produk', 'Admin\ProdukController@create')->name('admin.create-produk');
+Route::get('/input-stock-produk', 'Admin\ProdukController@inputPage')->name('admin.input-stock-produk');
+Route::post('/input-stock-produk', 'Admin\ProdukController@getStockProduct')->name('admin.get-stock-product');
 Route::get('/update-produk-page/{id}', 'Admin\ProdukController@updatePage')->name('admin.update-produk-page');
 Route::post('/update-produk/{id}', 'Admin\ProdukController@update')->name('admin.update-produk');
 Route::post('/delete-produk/{id}', 'Admin\ProdukController@delete')->name('admin.delete-produk');

@@ -2,13 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
     public function index() {
 
-        return view('admin.home');
+        $produk_max = DB::table('produks')->orderBy('jml_keluar', 'desc')->limit(5)->get();
+        $produk_min = DB::table('produks')->orderBy('jml_keluar', 'asc')->limit(3)->get();
+        $stok_sdkt = DB::table('produks')->where('total', '<', 10)->first();
+
+        $date = date('Y-m-d');
+        $stock = DB::table('penjualans')->where('tgl_pesenan', $date)->get()->count();
+
+        if ($stok_sdkt) {
+            $produk = $stok_sdkt->nama_product;
+        } else {
+            $produk = "Belum ada produk kosong!";
+        }
+
+        return view('admin.home', compact('produk_max', 'produk_min', 'produk', 'stock'));
+
+        // return response()->json($produk['produk_laku']);
+
+        // dd($stok_sdkt);
     }
 }

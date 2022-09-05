@@ -22,7 +22,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Jumlah Pesanan Hari ini</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">99</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $produk }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -40,7 +40,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Produk Terlaris</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Apron Menyusui Bayi Melingkar</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $produk_max[0]->nama_product }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -56,19 +56,10 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Produk Stok Kosong
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Produk Stok Sedikit
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                             </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $produk }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -91,78 +82,69 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Produk dengan penjualan terbaik</h6>
                 </div>
-                <div class="card-body">
-                    <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100"></div>
+                @foreach ($produk_max as $row)
+                    @php
+                        $stock = $row->jml_keluar / 10;
+                    @endphp
+                    <div class="card-body">
+                        <h4 class="small font-weight-bold">{{ $row->nama_product }} <span
+                                class="float-right">{{ $row->jml_keluar }} Pcs</span>
+                        </h4>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $stock }}%"
+                                aria-valuenow="{{ $stock }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
-                    <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-                            aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Account Setup <span class="float-right">100%</span></h4>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>
 
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
+        <div class="col-lg-5 mb-4 mr-5">
+
+            <!-- Project Card Example -->
             <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Produk penjualan terburuk</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Produk dengan penjualan menurun</h6>
+                </div>
+                @foreach ($produk_min as $row)
+                    <div class="card-body">
+                        <h4 class="small font-weight-bold">{{ $row->nama_product }} <span
+                                class="float-right">{{ $row->jml_keluar }} Pcs</span>
+                        </h4>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $row->jml_keluar }}%"
+                                aria-valuenow="{{ $row->jml_keluar }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
-                    </div>
-                </div>
+                @endforeach
             </div>
+
         </div>
     </div>
 
     <!-- /.container-fluid -->
 @endsection
+@push('js')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+            $('.progress-bar').addClass('bg-success');
+
+            $.ajax({
+                url: "{{ route('admin.home') }}",
+                method: "get",
+                success: function(data) {
+                    // alert('Berhasil Ambil data by AJAX');
+
+                    console.log();
+                }
+            })
+        });
+    </script>
+@endpush

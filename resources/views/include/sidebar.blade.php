@@ -2,7 +2,7 @@
  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
      <!-- Sidebar - Brand -->
-     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.home') }}">
          <div class="sidebar-brand-icon rotate-n-15">
              <p>Toko</p>
          </div>
@@ -14,7 +14,7 @@
 
      <!-- Nav Item - Dashboard -->
      <li class="nav-item active">
-         <a class="nav-link" href="index.html">
+         <a class="nav-link" href="{{ route('admin.home') }}">
              <i class="fas fa-fw fa-tachometer-alt"></i>
              <span>Dashboard</span></a>
      </li>
@@ -57,6 +57,9 @@
                  </a>
                  <a class="collapse-item" href="{{ route('admin.create-produk-page') }}">
                      <h6 class="collapse-header">Tambah Produk Baru</h6>
+                 </a>
+                 <a class="collapse-item" href="{{ route('admin.input-stock-produk') }}">
+                     <h6 class="collapse-header">Input Stock Produk</h6>
                  </a>
              </div>
          </div>
