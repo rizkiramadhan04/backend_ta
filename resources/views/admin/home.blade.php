@@ -22,7 +22,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Jumlah Pesanan Hari ini</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $produk }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stock }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -125,26 +125,3 @@
 
     <!-- /.container-fluid -->
 @endsection
-@push('js')
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $(document).ready(function() {
-            $('.progress-bar').addClass('bg-success');
-
-            $.ajax({
-                url: "{{ route('admin.home') }}",
-                method: "get",
-                success: function(data) {
-                    // alert('Berhasil Ambil data by AJAX');
-
-                    console.log();
-                }
-            })
-        });
-    </script>
-@endpush
