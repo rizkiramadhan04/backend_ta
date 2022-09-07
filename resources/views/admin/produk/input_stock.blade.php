@@ -2,6 +2,15 @@
 @section('title', 'Tambah Produk')
 @section('content')
     <div class="container-fluid">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('admin.update-stock') }}" method="POST">
             @csrf
             <div class="form-group col-xl-6 col-md-4">
@@ -22,8 +31,8 @@
                 <input type="number" class="form-control" id="input-stock" name="input_stock" required>
             </div>
             <div class="form-group col-xl-6 col-md-6">
-                <label for="Tangal Barang Masuk">Tangal Barang Masuk</label>
-                <input type="date" class="form-control" id="Tangal Barang Masuk" name="tgl_produk_masuk" required>
+                <label for="Tanggal Barang Masuk">Tangal Barang Masuk</label>
+                <input type="date" class="form-control" id="tanggal_barang_masuk" name="tgl_produk_masuk" required>
             </div>
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary" width="50" height="70">Simpan</button>

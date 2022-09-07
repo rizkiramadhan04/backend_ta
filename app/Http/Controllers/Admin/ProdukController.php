@@ -74,26 +74,28 @@ class ProdukController extends Controller
 
     public function updateStock(Request $request) {
 
+        // dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'input_stock' => 'required',
-            'tgl_produk_awal' => 'required',
+            'tgl_produk_masuk' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.produk')->withErrors($validator)->withInput();
+            return redirect()->route('admin.input-stock-produk')->withInput()->withErrors($validator);
         }
 
         DB::beginTransaction();
         try {
 
             DB::table('produks')->where('id', $request->produk_id)->update([
-            'jml_awal' => $request->input_stock,
+            'jml_masuk' => $request->input_stock,
             'tgl_produk_masuk' => $request->tgl_produk_masuk,
             ]);
 
             DB::commit();
 
-            return redirect()->route('admin.produk')->with(alert('Berhasil Update Stock!'));
+            return redirect()->route('admin.produk');
 
         } catch (Exception $e) {
             DB::rollback();
