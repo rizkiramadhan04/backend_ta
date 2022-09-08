@@ -10,6 +10,6 @@ use App\Exports\PenjualanExport;
 class PenjualanExportController extends Controller
 {
     public function export() {
-        return Excel::download(new PenjualanExport(), 'data_penjualan.xlsx');
+        return Excel::download(new PenjualanExport(), 'data_penjualan - Toko Serba 99.xlsx');
     }
 }

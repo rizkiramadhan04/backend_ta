@@ -36,11 +36,11 @@
                                 <td>{{ $obj->harga }}</td>
                                 <td>{{ $obj->tgl_pesenan }}</td>
                                 <td>
-                                    <a href="{{ route('gallery-update-page', $obj->id) }}" class="btn btn-success">
+                                    <a href="#" class="btn btn-success">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="{{ route('gallery-delete', $obj->id) }}" method="post" class="d-inline">
+                                    <form action="#" method="post" class="d-inline">
                                         @csrf
                                         <button class="btn btn-danger">
                                             <i class="fa fa-trash"></i>

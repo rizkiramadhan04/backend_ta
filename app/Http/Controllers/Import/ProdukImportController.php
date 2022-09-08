@@ -44,6 +44,6 @@ class ProdukImportController extends Controller
     }
 
     public function export() {
-        return Excel::download(new ProdukExport(), 'data_produk.xlsx');
+        return Excel::download(new ProdukExport(), 'data_produk - Toko Serba 99.xlsx');
     }
 }

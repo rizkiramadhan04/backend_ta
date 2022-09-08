@@ -88,9 +88,14 @@ class ProdukController extends Controller
         DB::beginTransaction();
         try {
 
-            DB::table('produks')->where('id', $request->produk_id)->update([
+            $produk = Produk::findOrFail($request->produk_id);
+            $total = ($produk->total + $request->jml_masuk);
+            // dd($total);
+
+            $produk->update([
             'jml_masuk' => $request->input_stock,
             'tgl_produk_masuk' => $request->tgl_produk_masuk,
+            'total' => $total,
             ]);
 
             DB::commit();
