@@ -58,6 +58,7 @@
                             <button type="submit" class="btn btn-success">IMPORT</button>
                         </div>
                     </form>
+                    <a href="{{ asset('imports/template_data_poduk.xlsx') }}"><button class="btn btn-primary mb-3 ml-3">Download Template Excel</button></a>
                 </div>
             </div>
         </div>

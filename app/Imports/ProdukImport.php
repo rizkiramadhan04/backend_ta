@@ -14,17 +14,17 @@ class ProdukImport implements ToModel
     */
     public function model(array $row)
     {   
-        $date_d = $row[2];
+        $date_d = $row['tgl_produk_masuk'];
         $date_s = str_replace('/', '-', $date_d);
 
         return new Produk([
-            'nama_product' => $row[0],
-            'jml_masuk' => $row[1],
+            'nama_product' => $row['nama_produk'],
+            'jml_masuk' => $row['jml_masuk'],
             'tgl_produk_masuk' => date("Y-m-d", strtotime($date_s)),
-            'harga_jual' => $row[3],
-            'harga_beli' => $row[4],
-            'jml_keluar' => $row[5],
-            'total' => ($row[1] - $row[5]),
+            'harga_jual' => $row['harga_jual'],
+            'harga_beli' => $row['harga_beli'],
+            'jml_keluar' => $row['jml_keluar'],
+            'total' => ($row['jml_masuk'] - $row['jml_keluar']),
         ]);
     }
 }
