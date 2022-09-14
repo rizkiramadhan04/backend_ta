@@ -13,7 +13,7 @@
                          <th>Nama Customer</th>
                          <th>Nomor HP</th>
                          <th>Nomor Resi</th>
-                         <th>nama_product</th>
+                         <th>Nama Produk</th>
                          <th>Produk Dibeli</th>
                          <th>Tanggal Pemesanan</th>
                          <th>Harga Produk</th>

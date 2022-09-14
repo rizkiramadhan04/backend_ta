@@ -117,7 +117,6 @@ class ProdukController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nama_product' => 'required|string|max:225',
-            'jml_masuk' => 'required|integer',
             'tgl_produk_masuk' => 'required',
             'harga_jual' => 'required',
             'harga_beli' => 'required',
@@ -133,12 +132,10 @@ class ProdukController extends Controller
         try {
             $produk->update([
                 'nama_product' => $request->nama_product,
-                'jml_masuk' => $request->jml_masuk,
                 'tgl_produk_masuk' => $request->tgl_produk_masuk,
                 'harga_jual' => $request->harga_jual,
                 'harga_beli' => $request->harga_beli,
                 'jml_keluar' => $request->jml_keluar,
-                'total' => $produk->jml_masuk - $produk->jml_keluar,
             ]);
 
             DB::commit();

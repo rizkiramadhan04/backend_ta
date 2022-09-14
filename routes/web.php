@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// auth page
+
+Route::get('/login', 'Auth\AuthController@loginPage')->name('login-page');
+Route::get('/forgot-password', 'Auth\AuthController@forgotPasswordPage')->name('forgot-password-page');
+
+// Route::prefix('admin')->namespace('Admin')->middleware('auth')->group( funtion(){})
+
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 
 //Produk

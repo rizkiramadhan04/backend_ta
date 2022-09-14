@@ -17,16 +17,6 @@
                     else.</small>
             </div>
             <div class="form-group col-xl-6 col-md-4">
-                <label for="stock-awal"></label>Stock Masuk
-                <input type="number" class="form-control" id="stock-masuk" name="jml_masuk"
-                    value="{{ $produk->jml_masuk }}">
-            </div>
-            <div class="form-group col-xl-6 col-md-4">
-                <label for="stock-keluar">Stock Keluar</label>
-                <input type="number" class="form-control" id="stock-keluar" name="jml_keluar"
-                    value="{{ $produk->jml_keluar }}">
-            </div>
-            <div class="form-group col-xl-6 col-md-4">
                 <label for="harga-jual">Harga Jual</label>
                 <input type="number" class="form-control" id="harga-jual" name="harga_jual"
                     value="{{ $produk->harga_jual }}">

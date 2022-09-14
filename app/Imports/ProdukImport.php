@@ -3,10 +3,14 @@
 namespace App\Imports;
 
 use App\Models\Produk;
+use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ProdukImport implements ToModel
+class ProdukImport implements ToModel, WithHeadingRow
 {
+    use Importable;
+    
     /**
     * @param array $row
     *
