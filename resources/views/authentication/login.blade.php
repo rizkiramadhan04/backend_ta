@@ -34,7 +34,7 @@
                                     </form>
 
                                     <div class="text-center">
-                                        <a class="small" href="#">Forgot Password?</a>
+                                        <a class="small" href="{{ route('forgot-password-page') }}">Forgot Password?</a>
                                     </div>
                                 </div>
                             </div>
