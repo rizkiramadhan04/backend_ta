@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -18,24 +22,28 @@ class AuthController extends Controller
             'password'  => 'required',
         ]);
 
+        
         if ($validator->fails()) {
-            return redirect()->route('admin.login')->withErrors($validator)->withInput();
+            return redirect()->route('login-page')->withErrors($validator)->withInput();
         }
-
+        
         $check_user = User::where('email', $request->email)->first();
+        // dd(Hash::check($request->password, $check_user->password));
 
-        if ($check_user->roles == 'admin') {
+        if ($check_user) {
             if (Hash::check($request->password, $check_user->password)) {
 
-                $login = Auth::attempt(['email' => $check_user->email, 'password' => $request->password]);
+               $login = Auth::attempt(['email' => $check_user->email, 'password' => $request->password]);
+
+            //    dd($login);
 
                 return redirect()->route('admin.home');
                 
             } else {
-                return redirect()->route('admin.login-page')->with('error', 'Password anda salah !');
+                return redirect()->route('login-page')->with('error', 'Password anda salah !')->withInput();
             } 
         } else {
-                 return redirect()->route('admin.login-page')->with('error', 'Maaf anda bukan administrator !');
+                 return redirect()->route('login-page')->with('error', 'Maaf anda bukan administrator !')->withInput();
             }
 
     }

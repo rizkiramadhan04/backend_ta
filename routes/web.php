@@ -13,16 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // auth page
 
-Route::get('/login', 'Auth\AuthController@loginPage')->name('login-page');
+Route::get('/', 'Auth\AuthController@loginPage')->name('login-page');
+Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/forgot-password', 'Auth\AuthController@forgotPasswordPage')->name('forgot-password-page');
 
-Route::prefix('admin')->middleware('auth')->group( function(){
+Route::get('/user-create-page', 'Admin\UserController@createPage')->name('admin.user-create-page');
+Route::post('/user-create', 'Admin\UserController@create')->name('admin.user-create');
+Route::prefix('admin')->middleware('admin')->group( function(){
 
     Route::get('/', 'Admin\HomeController@index')->name('admin.home');
     
@@ -48,8 +47,6 @@ Route::prefix('admin')->middleware('auth')->group( function(){
     
     //User
     Route::get('/user', 'Admin\UserController@index')->name('admin.user');
-    Route::get('/user-create-page', 'Admin\UserController@createPage')->name('admin.user-create-page');
-    Route::post('/user-create', 'Admin\UserController@create')->name('admin.user-create');
     Route::get('/user-update-page/{id}', 'Admin\UserController@updatePage')->name('admin.user-update-page');
     Route::post('/user-update/{id}', 'Admin\UserController@update')->name('admin.user-update');
     Route::post('/user-delete/{id}', 'Admin\UserController@delete')->name('admin.user-delete');

@@ -8,11 +8,21 @@
                 <i class="fas fa-plus fa-sm text-white-50"></i> Import
             </a>
         </div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('admin.create-produk') }}" method="POST">
             @csrf
             <div class="form-group col-xl-6 col-md-4">
                 <label for="">Nama Produk</label>
-                <input type="text" class="form-control" id="name_produk" aria-describedby="nameProduk" name="nama_product">
+                <input type="text" class="form-control" id="name_produk" aria-describedby="nameProduk"
+                    name="nama_product">
                 <small id="nameProduk" class="form-text text-muted">We'll never share your email with anyone
                     else.</small>
             </div>
@@ -36,7 +46,8 @@
         </form>
 
         {{-- modal --}}
-        <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -58,7 +69,8 @@
                             <button type="submit" class="btn btn-success">IMPORT</button>
                         </div>
                     </form>
-                    <a href="{{ asset('imports/template_data_poduk.xlsx') }}"><button class="btn btn-primary mb-3 ml-3">Download Template Excel</button></a>
+                    <a href="{{ asset('imports/template_data_poduk.xlsx') }}"><button
+                            class="btn btn-primary mb-3 ml-3">Download Template Excel</button></a>
                 </div>
             </div>
         </div>

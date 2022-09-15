@@ -41,7 +41,7 @@ class PenjualanController extends Controller
 
         DB::beginTransaction(); 
 
-        $produk = Produk::where('name', 'like', '%'.request->produk_name.'%')->first();
+        $produk = Produk::where('nama_product', 'LIKE', '%' .$request->produk_name. '%');
         
         DB::beginTransaction();
         try {
