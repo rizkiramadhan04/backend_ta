@@ -25,8 +25,6 @@ class HomeController extends Controller
 
         return view('admin.home', compact('produk_max', 'produk_min', 'produk', 'stock'));
 
-        // return response()->json($produk['produk_laku']);
-
         // dd($stok_sdkt);
     }
 }
