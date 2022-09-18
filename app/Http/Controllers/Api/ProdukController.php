@@ -12,6 +12,9 @@ use Exception;
 class ProdukController extends Controller
 {
     public function index() {
+
+        // $user = auth()->guard('api')->user()->id;
+        
         $produk = Produk::all();
 
         if ($produk) {
@@ -59,7 +62,7 @@ class ProdukController extends Controller
             $produk->nama_product = $request->nama_product;
             $produk->jml_masuk = $request->jml_masuk;
             $produk->jml_keluar = $request->jml_keluar;
-            $produk->total = $request->total;
+            $produk->total = ($request->jml_masuk - $request->jml_keluar);
             $produk->tgl_produk_masuk = $tgl_produk_masuk;
             $produk->harga_jual = $request->harga_jual;
             $produk->harga_beli = $request->harga_beli;
@@ -72,7 +75,6 @@ class ProdukController extends Controller
             'nama_product' => $produk->nama_product,
             'jml_masuk' => $produk->jml_masuk,
             'jml_keluar' => $produk->jml_keluar,
-            'total' => $produk->total,
             'tgl_produk_masuk' => date("d-m-Y", strtotime($produk->tgl_produk_masuk)),
             'harga_jual' => $produk->harga_jual,
             'harga_beli' => $produk->harga_beli,
@@ -124,7 +126,7 @@ class ProdukController extends Controller
                 'nama_product' => $request->input('nama_product'),
                 'jml_masuk' => $request->input('jml_masuk'),
                 'jml_keluar' => $request->input('jml_keluar'),
-                'total' => $request->input('total'),
+                'total' => ($request->input('jml_masuk') - $request->input('jml_keluar')),
                 'tgl_produk_masuk' => $tgl_produk_masuk,
                 'harga_jual' => $request->input('harga_jual'),
                 'harga_beli' => $request->input('harga_beli'),
@@ -136,7 +138,6 @@ class ProdukController extends Controller
             'nama_product' => $produk->nama_product,
             'jml_masuk' => $produk->jml_masuk,
             'jml_keluar' => $produk->jml_keluar,
-            'total' => $produk->total,
             'tgl_produk_masuk' => date("d-m-Y", strtotime($produk->tgl_produk_masuk)),
             'harga_jual' => $produk->harga_jual,
             'harga_beli' => $produk->harga_beli,
