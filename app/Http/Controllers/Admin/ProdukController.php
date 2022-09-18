@@ -31,10 +31,16 @@ class ProdukController extends Controller
             'tgl_produk_masuk' => 'required',
             'harga_jual' => 'required',
             'harga_beli' => 'required',
+        ],[
+            'nama_product.required' => 'Nama produk belum terisi',
+            'jml_masuk.required' => 'Jumlah stock belum terisi',
+            'tgl_produk_masuk.required' => 'Tanggal masuk produk belum terisi',
+            'harga_jual.required' => 'Harga jual belum terisi',
+            'harga_beli.required' => 'Harga beli belum terisi',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.update-update-page')->withInput()->withErrors($validator);
+            return redirect()->route('admin.create-produk-page')->withInput()->withErrors($validator);
         }
         
         DB::beginTransaction();
@@ -77,8 +83,13 @@ class ProdukController extends Controller
         // dd($request->all());
 
         $validator = Validator::make($request->all(), [
+            'produk_id' => 'required',
             'input_stock' => 'required',
             'tgl_produk_masuk' => 'required',
+        ],[
+            'produk_id.required' => 'Nama produk belum dipilih',
+            'input_stock.required' => 'Stock belum diisi',
+            'tgl_produk_masuk.required' => 'Tanggal produk masuk belum diisi'
         ]);
 
         if ($validator->fails()) {
@@ -120,10 +131,15 @@ class ProdukController extends Controller
             'tgl_produk_masuk' => 'required',
             'harga_jual' => 'required',
             'harga_beli' => 'required',
+        ],[
+            'nama_product.required' => 'Nama produk belum diisi',
+            'tgl_produk_masuk.required' => 'Tanggal produk masuk belum diisi',
+            'harga_jual.required' => 'Harga jual produk belum diisi',
+            'harga_beli.required' => 'Harga beli produk belum diisi',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.update-produk-page')->withErrors($validator)->withInput();
+            return redirect()->route('admin.update-produk-page', $id)->withErrors($validator)->withInput();
         }
 
         $produk = Produk::findOrFail($id);

@@ -30,10 +30,16 @@ class UserController extends Controller
             'name' => 'required|max:225',
             'email' => 'required|email|unique:users',
             'password' => 'required',
+        ],[
+            'name.required' => 'Nama user belum diisi',
+            'email.required' => 'Email belum diisi',
+            'email.email' => 'Mohon masukan email yang benar',
+            'email.unique' => 'Email sudah dimiliki',
+            'password.required' => 'Password belum diisi',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.user')->withErrors($validator)->withInput();
+            return redirect()->route('admin.user-create-page')->withErrors($validator)->withInput();
         }
 
         DB::beginTransaction();
@@ -67,10 +73,15 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:225',
             'email' => 'required|email|unique:users',
+        ],[
+            'name.required' => 'Nama belum diisi',
+            'email.required' => 'Email belum diisi',
+            'email.email' => 'Mohon masukan email yang benar',
+            'email.unique' => 'Email sudah dimiliki',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.user')->withErrors($validator)->withInput();
+            return redirect()->route('admin.user.update', $id)->withErrors($validator)->withInput();
         }
 
         $user = User::findOrFail($id);

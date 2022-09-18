@@ -9,19 +9,35 @@
             @csrf
             <div class="form-group col-xl-6 col-md-4">
                 <label for="name">Nama</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" name="name">
-                <small id="nameProduk" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                    aria-describedby="name" name="name">
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
                 <label for="emaipassword">email</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                    name="email">
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
                 <label for="password">password</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
+                    name="password">
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary"> Simpan </button>
         </form>
     </div>
 @endsection

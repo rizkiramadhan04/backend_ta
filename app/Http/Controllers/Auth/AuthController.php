@@ -20,6 +20,10 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'email'     => 'required|email|exists:users',
             'password'  => 'required',
+        ],[
+            'email.required' => 'Email belum terisi',
+            'email.email' => 'Mohon masukan email yang benar',
+            'password.required' => 'Password belum terisi',
         ]);
 
         
@@ -35,9 +39,11 @@ class AuthController extends Controller
 
                $login = Auth::attempt(['email' => $check_user->email, 'password' => $request->password]);
 
-            //    dd($login);
-
+               if ($login) {
+                $request->session()->regenerate();
+ 
                 return redirect()->route('admin.home');
+               }
                 
             } else {
                 return redirect()->route('login-page')->with('error', 'Password anda salah !')->withInput();
@@ -54,5 +60,15 @@ class AuthController extends Controller
 
     public function forgotPassword(Request $request) {
 
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect()->route('login-page');
     }
 }

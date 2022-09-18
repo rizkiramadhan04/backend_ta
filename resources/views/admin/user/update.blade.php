@@ -9,13 +9,23 @@
             @csrf
             <div class="form-group col-xl-6 col-md-4">
                 <label for="name">Nama</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
-                <small id="nameProduk" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                    value="{{ $user->name }}">
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
                 <label for="emaipassword">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                    name="email" value="{{ $user->email }}">
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary">Edit Data</button>
         </form>

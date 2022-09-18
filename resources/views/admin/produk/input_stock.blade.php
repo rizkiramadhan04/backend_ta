@@ -2,25 +2,21 @@
 @section('title', 'Tambah Produk')
 @section('content')
     <div class="container-fluid">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <form action="{{ route('admin.update-stock') }}" method="POST">
             @csrf
             <div class="form-group col-xl-6 col-md-4">
                 <label for="nama_produk">Nama Produk</label>
-                <select class="form-control" id="nama_produk" name="produk_id">
+                <select class="form-control @error('produk_id') is-invalid @enderror" id="nama_produk" name="produk_id">
                     <option value="">-- Pilih Produk --</option>
                     @foreach ($list_produk as $row)
                         <option value="{{ $row->id }}">{{ $row->nama_product }}</option>
                     @endforeach
                 </select>
+                @error('produk_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-xl-3 col-md-6">
                 <label for="stock">Stock Sebelumnya *</label>
@@ -28,11 +24,23 @@
             </div>
             <div class="form-group col-xl-3 col-md-6">
                 <label for="stock">Input Stock *</label>
-                <input type="number" class="form-control" id="input-stock" name="input_stock" required>
+                <input type="number" class="form-control @error('input_stock') is-invalid @enderror" id="input-stock"
+                    name="input_stock">
+                @error('input_stock')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-xl-6 col-md-6">
                 <label for="Tanggal Barang Masuk">Tangal Barang Masuk</label>
-                <input type="date" class="form-control" id="tanggal_barang_masuk" name="tgl_produk_masuk" required>
+                <input type="date" class="form-control @error('tgl_produk_masuk') is-invalid @enderror"
+                    id="tanggal_barang_masuk" name="tgl_produk_masuk">
+                @error('tgl_produk_masuk')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary" width="50" height="70">Simpan</button>

@@ -11,27 +11,45 @@
             @csrf
             <div class="form-group col-xl-6 col-md-4">
                 <label for="nama-produk">Nama Produk</label>
-                <input type="text" class="form-control" id="name_produk" aria-describedby="nameProduk" name="nama_product"
-                    value="{{ $produk->nama_product }}">
-                <small id="nameProduk" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
+                <input type="text" class="form-control @error('nama_product') is-invalid @enderror" id="name_produk"
+                    aria-describedby="nameProduk" name="nama_product" value="{{ $produk->nama_product }}">
+                @error('nama_product')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
                 <label for="harga-jual">Harga Jual</label>
-                <input type="number" class="form-control" id="harga-jual" name="harga_jual"
-                    value="{{ $produk->harga_jual }}">
+                <input type="number" class="form-control @error('harga_jual') is-invalid @enderror" id="harga-jual"
+                    name="harga_jual" value="{{ $produk->harga_jual }}">
+                @error('harga_jual')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
                 <label for="harga-beli">Harga beli</label>
-                <input type="number" class="form-control" id="harga-beli" name="harga_beli"
-                    value="{{ $produk->harga_beli }}">
+                <input type="number" class="form-control @error('harga_beli') is-invalid @enderror" id="harga-beli"
+                    name="harga_beli" value="{{ $produk->harga_beli }}">
+                @error('harga_beli')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
                 <label for="Tangal Barang Masuk">Tangal Barang Masuk</label>
-                <input type="date" class="form-control" id="Tangal Barang Masuk" name="tgl_produk_masuk"
-                    value="{{ $produk->tgl_produk_masuk }}">
+                <input type="date" class="form-control @error('tgl_produk_masuk') is-invalid @enderror"
+                    id="Tangal Barang Masuk" name="tgl_produk_masuk" value="{{ $produk->tgl_produk_masuk }}">
+                @error('tgl_produk_masuk')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary"> Edit Data </button>
         </form>
 
     </div>
