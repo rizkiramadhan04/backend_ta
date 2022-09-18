@@ -63,7 +63,7 @@
             $('#nama_produk').on('change', function() {
 
                 $.ajax({
-                    url: "{{ url('/stock-produk-list') }}",
+                    url: "{{ url('/admin/stock-produk-list') }}",
                     method: "POST",
                     data: {
                         produk_id: $('#nama_produk').val()
