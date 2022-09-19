@@ -32,9 +32,9 @@
                                 <td>{{ $obj->no_hp }}</td>
                                 <td>{{ $obj->no_resi }}</td>
                                 <td>{{ $obj->produk_id }}</td>
-                                <td>{{ $obj->harga_jumlah }}</td>
+                                <td>{{ $obj->jumlah }}</td>
                                 <td>{{ $obj->harga }}</td>
-                                <td>{{ $obj->tgl_pesenan }}</td>
+                                <td>{{ $obj->tgl_pesanan }}</td>
                                 <td>
                                     <a href="#" class="btn btn-success">
                                         <i class="fa fa-pencil-alt"></i>

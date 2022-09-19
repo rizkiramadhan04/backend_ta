@@ -24,7 +24,7 @@
 				@foreach($model as $value)
 				<tr>
 					<td>{{ $i++ }}</td>
-					<td>{{ucwords($value->nama_product)}}</td>
+					<td>{{ucwords($value->nama_produk)}}</td>
                          <td>{{$value->total}}</td>
                          <td>{{$value->jml_keluar}}</td>
                          <td>{{$value->harga_beli}}</td>

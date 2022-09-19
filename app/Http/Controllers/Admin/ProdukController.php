@@ -26,13 +26,13 @@ class ProdukController extends Controller
     public function create(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'nama_product' => 'required|string|max:225',
+            'nama_produk' => 'required|string|max:225',
             'jml_masuk' => 'required|integer',
             'tgl_produk_masuk' => 'required',
             'harga_jual' => 'required',
             'harga_beli' => 'required',
         ],[
-            'nama_product.required' => 'Nama produk belum terisi',
+            'nama_produk.required' => 'Nama produk belum terisi',
             'jml_masuk.required' => 'Jumlah stock belum terisi',
             'tgl_produk_masuk.required' => 'Tanggal masuk produk belum terisi',
             'harga_jual.required' => 'Harga jual belum terisi',
@@ -46,7 +46,7 @@ class ProdukController extends Controller
         DB::beginTransaction();
      try {
         $produk = new Produk();
-        $produk->nama_product = $request->nama_product;
+        $produk->nama_produk = $request->nama_produk;
         $produk->jml_masuk = $request->jml_masuk;
         $produk->tgl_produk_masuk = $request->tgl_produk_masuk;
         $produk->harga_jual = $request->harga_jual;
@@ -127,12 +127,12 @@ class ProdukController extends Controller
     public function update(Request $request, $id) {
 
         $validator = Validator::make($request->all(), [
-            'nama_product' => 'required|string|max:225',
+            'nama_produk' => 'required|string|max:225',
             'tgl_produk_masuk' => 'required',
             'harga_jual' => 'required',
             'harga_beli' => 'required',
         ],[
-            'nama_product.required' => 'Nama produk belum diisi',
+            'nama_produk.required' => 'Nama produk belum diisi',
             'tgl_produk_masuk.required' => 'Tanggal produk masuk belum diisi',
             'harga_jual.required' => 'Harga jual produk belum diisi',
             'harga_beli.required' => 'Harga beli produk belum diisi',
@@ -147,7 +147,7 @@ class ProdukController extends Controller
         DB::beginTransaction();
         try {
             $produk->update([
-                'nama_product' => $request->nama_product,
+                'nama_produk' => $request->nama_produk,
                 'tgl_produk_masuk' => $request->tgl_produk_masuk,
                 'harga_jual' => $request->harga_jual,
                 'harga_beli' => $request->harga_beli,

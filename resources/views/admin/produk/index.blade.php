@@ -30,7 +30,7 @@
                         @forelse ($item as $obj)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $obj->nama_product }}</td>
+                                <td>{{ $obj->nama_produk }}</td>
                                 <td>{{ ($obj->jml_masuk - $obj->jml_keluar) }}</td>
                                 <td>{{ $obj->jml_keluar }}</td>
                                 <td>{{ $obj->harga_beli }}</td>

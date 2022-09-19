@@ -12,9 +12,9 @@
             @csrf
             <div class="form-group col-xl-6 col-md-4">
                 <label for="">Nama Produk</label>
-                <input type="text" class="form-control @error('nama_product') is-invalid @enderror" id="name_produk"
-                    aria-describedby="nameProduk" name="nama_product">
-                @error('nama_product')
+                <input type="text" class="form-control @error('nama_produk') is-invalid @enderror" id="name_produk"
+                    aria-describedby="nameProduk" name="nama_produk">
+                @error('nama_produk')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

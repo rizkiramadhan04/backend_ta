@@ -18,9 +18,9 @@ class CreatePenjualansTable extends Migration
             $table->string('nama_pelanggan')->nullable();
             $table->string('no_hp',20)->nullable();
             $table->string('no_resi')->nullable();
-            $table->foreignId('produk_id')->constrained()->nullable();
+            $table->integer('produk_id')->nullable();
             $table->integer('jumlah')->nullable();
-            $table->date('tgl_pesenan')->nullable();
+            $table->date('tgl_pesanan')->nullable();
             $table->string('harga', 25)->nullable();
 
             $table->softDeletes();

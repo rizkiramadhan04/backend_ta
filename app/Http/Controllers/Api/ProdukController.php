@@ -35,7 +35,7 @@ class ProdukController extends Controller
 
     public function create(Request $request) {
         $validator = Validator::make($request->all(), [
-            'nama_product' => 'required|string|max:225',
+            'nama_produk' => 'required|string|max:225',
             'jml_masuk' => 'required|integer|max:225',
             'jml_keluar' => 'required|integer|max:225',
             'total' => 'required|integer|max:225',
@@ -59,7 +59,7 @@ class ProdukController extends Controller
         try {
             
             $produk = new Produk;
-            $produk->nama_product = $request->nama_product;
+            $produk->nama_produk = $request->nama_produk;
             $produk->jml_masuk = $request->jml_masuk;
             $produk->jml_keluar = $request->jml_keluar;
             $produk->total = ($request->jml_masuk - $request->jml_keluar);
@@ -72,7 +72,7 @@ class ProdukController extends Controller
             $response = [
             'status' => 'success',
             'id' => $produk->id,
-            'nama_product' => $produk->nama_product,
+            'nama_produk' => $produk->nama_produk,
             'jml_masuk' => $produk->jml_masuk,
             'jml_keluar' => $produk->jml_keluar,
             'tgl_produk_masuk' => date("d-m-Y", strtotime($produk->tgl_produk_masuk)),
@@ -99,7 +99,7 @@ class ProdukController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id' => 'required',
-            'nama_product' => 'required|string|max:225',
+            'nama_produk' => 'required|string|max:225',
             'jml_masuk' => 'required|integer|max:225',
             'jml_keluar' => 'required|integer|max:225',
             'total' => 'required|integer|max:225',
@@ -111,7 +111,7 @@ class ProdukController extends Controller
         if ($validator->fails()) {
             $response = [
                 'status' => 'failed',
-                'messages' => $validator->errors(),
+                'messages' => $validator->errors()->first(),
             ];
         }
 
@@ -123,7 +123,7 @@ class ProdukController extends Controller
         try {
             
             $produk->update([
-                'nama_product' => $request->input('nama_product'),
+                'nama_produk' => $request->input('nama_produk'),
                 'jml_masuk' => $request->input('jml_masuk'),
                 'jml_keluar' => $request->input('jml_keluar'),
                 'total' => ($request->input('jml_masuk') - $request->input('jml_keluar')),
@@ -135,7 +135,7 @@ class ProdukController extends Controller
             $response = [
             'status' => 'success',
             'id' => $produk->id,
-            'nama_product' => $produk->nama_product,
+            'nama_produk' => $produk->nama_produk,
             'jml_masuk' => $produk->jml_masuk,
             'jml_keluar' => $produk->jml_keluar,
             'tgl_produk_masuk' => date("d-m-Y", strtotime($produk->tgl_produk_masuk)),

@@ -15,15 +15,12 @@ class HomeController extends Controller
         $stok_sdkt = DB::table('produks')->where('total', '<', 10)->first();
 
         $date = date('Y-m-d');
-        $stock = DB::table('penjualans')->where('tgl_pesenan', $date)->get()->count();
+        $stock = DB::table('penjualans')->where('tgl_pesanan', $date)->get()->count();
 
-        if ($stok_sdkt) {
-            $produk = $stok_sdkt->nama_product;
-        } else {
-            $produk = "Belum ada produk kosong!";
-        }
+        $stok_sdkt_name = (!empty($stok_sdkt)) ? $stok_sdkt->nama_produk : "Belum ada produk kosong!"; 
+        
 
-        return view('admin.home', compact('produk_max', 'produk_min', 'produk', 'stock'));
+        return view('admin.home', compact('produk_max', 'produk_min', 'stok_sdkt_name', 'stock'));
 
         // dd($stok_sdkt);
     }

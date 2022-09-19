@@ -27,11 +27,13 @@ class PenjualanController extends Controller
             'nama_pelanggan' => 'required',
             'no_hp' => 'required',
             'no_resi' => 'required',
+            'produk_id' => 'required',
             'jumlah' => 'required',
-            'tgl_pesenan' => 'required',
+            'tgl_pesanan' => 'required',
             'harga' => 'required',
         ]);
 
+        // dd($validator->fails());
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'failed',
@@ -41,43 +43,39 @@ class PenjualanController extends Controller
 
         DB::beginTransaction(); 
 
-        $produk = Produk::where('nama_product', 'LIKE', '%' .$request->produk_name. '%');
+        $produk = Produk::where('nama_produk', 'LIKE', '%' .$request->produk_name. '%');
         
         DB::beginTransaction();
         try {
+            // dd($request->all());
+            // $user = Auth::guard('api')->check();
+            // if ($user)
+            // {
 
-            $user = Auth::guard('api')->check();
-            if ($user)
-            {
-
-            }
+            // }
 
             $penjualan = new Penjualan;
             $penjualan->nama_pelanggan = $request->nama_pelanggan;
             $penjualan->no_hp = $request->no_hp;
             $penjualan->no_resi = $request->no_resi;
-            $penjualan->produk_id = $produk->id;
-            $penjualan->jumlah = $request->jumlah_produk;
-            $penjualan->tgl_pesenan = $request->tgl_pesenan;
+            $penjualan->produk_id = $request->produk_id;
+            $penjualan->jumlah = $request->jumlah;
+            $penjualan->tgl_pesanan = $request->tgl_pesanan;
             $penjualan->harga = $request->harga;
             
             $penjualan->save();
             
-            // dd($penjualan);
+            // dd($penjualan->save());
                 if ($penjualan->save()) {
-                    $nama_produk = $penjualan->nama_product;
-                    $produk = Produk::findOrFail($penjualan->produk_id)->first();
-                    $produk->update([
-                        'jml_keluar' => +$penjualan->jumlah_produk, 
+                    $produk = Produk::where('id', $penjualan->produk_id)->update([
+                        'jml_keluar' => +$penjualan->jumlah, 
                     ]);
 
                 }
 
                 $response = [
                     'status' => 'success',
-                    'data' => [
-                        'penjualan' => $penjualan,
-                    ],
+                    'data' => $penjualan,
                 ];
                 DB::commit();
 
@@ -91,7 +89,7 @@ class PenjualanController extends Controller
                     ];
         }
 
-        return response()->json($response, 200);
+        return response()->json($response);
     }
 
     public function update(Request $request) {

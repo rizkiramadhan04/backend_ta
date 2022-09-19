@@ -22,7 +22,7 @@ class ProdukImport implements ToModel, WithHeadingRow
         $date_s = str_replace('/', '-', $date_d);
 
         return new Produk([
-            'nama_product' => $row['nama_produk'],
+            'nama_produk' => $row['nama_produk'],
             'jml_masuk' => $row['jml_masuk'],
             'tgl_produk_masuk' => date("Y-m-d", strtotime($date_s)),
             'harga_jual' => $row['harga_jual'],

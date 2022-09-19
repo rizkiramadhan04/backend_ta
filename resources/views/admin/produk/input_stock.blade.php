@@ -9,7 +9,7 @@
                 <select class="form-control @error('produk_id') is-invalid @enderror" id="nama_produk" name="produk_id">
                     <option value="">-- Pilih Produk --</option>
                     @foreach ($list_produk as $row)
-                        <option value="{{ $row->id }}">{{ $row->nama_product }}</option>
+                        <option value="{{ $row->id }}">{{ $row->nama_produk }}</option>
                     @endforeach
                 </select>
                 @error('produk_id')

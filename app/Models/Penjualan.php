@@ -10,6 +10,6 @@ class Penjualan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_pelanggan', 'no_hp', 'no_resi', 'nama_product', 'jumlah_produk', 'tgl_pesenan', 'harga_produk', 'total_harga', 'total_jml_brg', 'produks_id'
+        'nama_pelanggan', 'no_hp', 'no_resi', 'produk_id', 'jumlah', 'tgl_pesanan', 'harga',
     ];
 }

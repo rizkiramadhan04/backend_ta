@@ -29,7 +29,7 @@
 					     <td>{{ucwords($value->nama_pelanggan)}}</td>
                          <td>{{$value->no_hp}}</td>
                          <td>{{$value->no_resi}}</td>
-                         <td>{{ucwords($value->nama_product)}}</td>
+                         <td>{{ucwords($value->nama_produk)}}</td>
                          <td>{{$value->jumlah_produk}}</td>
                          <td>{{date('d-m-Y', strtotime($value->tgl_pesenan))}}</td>
                          <td>{{$value->harga_produk}}</td>

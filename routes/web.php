@@ -19,15 +19,15 @@ Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/forgot-password', 'Auth\AuthController@forgotPasswordPage')->name('forgot-password-page');
 Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
+//User
+Route::get('/user-create-page', 'Admin\UserController@createPage')->name('admin.user-create-page');
+Route::post('/user-create', 'Admin\UserController@create')->name('admin.user-create');
 
 //Middleware Admin
 Route::prefix('admin')->middleware('admin')->group( function(){
     
     Route::get('/', 'Admin\HomeController@index')->name('admin.home');
-
-    //User
-    Route::get('/user-create-page', 'Admin\UserController@createPage')->name('admin.user-create-page');
-    Route::post('/user-create', 'Admin\UserController@create')->name('admin.user-create');
+    
     
     //Produk
     Route::get('/produk', 'Admin\ProdukController@index')->name('admin.produk');

@@ -32,7 +32,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Produk Terlaris</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $produk_max[0]->nama_product }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ (!empty($produk_max[0]->nama_produk)) ? $produk_max[0]->nama_produk : "Belum ada produk !"; }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -51,7 +51,7 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Produk Stok Sedikit
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $produk }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stok_sdkt_name }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -79,7 +79,7 @@
                         $stock = $row->jml_keluar / 10;
                     @endphp
                     <div class="card-body">
-                        <h4 class="small font-weight-bold">{{ $row->nama_product }} <span
+                        <h4 class="small font-weight-bold">{{ $row->nama_produk }} <span
                                 class="float-right">{{ $row->jml_keluar }} Pcs</span>
                         </h4>
                         <div class="progress mb-2">
@@ -101,7 +101,7 @@
                 </div>
                 @foreach ($produk_min as $row)
                     <div class="card-body">
-                        <h4 class="small font-weight-bold">{{ $row->nama_product }} <span
+                        <h4 class="small font-weight-bold">{{ $row->nama_produk }} <span
                                 class="float-right">{{ $row->jml_keluar }} Pcs</span>
                         </h4>
                         <div class="progress mb-2">
