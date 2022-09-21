@@ -37,8 +37,8 @@ class PenjualanController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => 'failed',
-                'message' => $validator->errors()->first(),
+                'status'    => 'failed',
+                'message'   => $validator->errors()->first(),
             ]);
         }
 

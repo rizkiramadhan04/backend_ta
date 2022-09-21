@@ -34,7 +34,7 @@ class ProdukController extends Controller
     }
 
     public function create(Request $request) {
-        
+
         $validator = Validator::make($request->all(), [
             'nama_produk'       => 'required|string|max:225',
             'jml_masuk'         => 'required|integer|max:225',
@@ -144,8 +144,8 @@ class ProdukController extends Controller
             DB::rollback();
             
             $response = [
-                'status' => 'failed',
-                'messages' => $e->getMessage(),
+                'status'    => 'failed',
+                'messages'  => $e->getMessage(),
             ];
         }
 
