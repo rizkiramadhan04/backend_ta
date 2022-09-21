@@ -17,25 +17,25 @@ class AuthController extends Controller
     public function register(Request $request) {
         
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|unique:users|email',
-            'password' => 'required',
+            'name'      => 'required',
+            'email'     => 'required|unique:users|email',
+            'password'  => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => 'failed',
-                'message' => $validator->errors()->first(),
+                'status'    => 'failed',
+                'message'   => $validator->errors()->first(),
             ]);
         }
 
         DB::beginTransaction();
         try {
-            $user = new User;
-            $user->email = $request->email;
+            $user           = new User;
+            $user->email    = $request->email;
             $user->password = Hash::make($request->password);
-            $user->name = $request->name;
-            $user->roles = 'ADMIN';
+            $user->name     = $request->name;
+            $user->roles    = 'admin';
 
             $user->save();
 
@@ -44,9 +44,9 @@ class AuthController extends Controller
             }
 
             $response = [
-                'status' => 'success',
-                'token' => $token,
-                'user' => $user,
+                'status'    => 'success',
+                'token'     => $token,
+                'user'      => $user,
             ];
 
             DB::commit();
@@ -55,8 +55,8 @@ class AuthController extends Controller
             DB::rollBack();
 
             $response = [
-                'status' => 'failed',
-                'message' => $e->getMessage(),
+                'status'    => 'failed',
+                'message'   => $e->getMessage(),
             ];
         }
 
@@ -66,14 +66,14 @@ class AuthController extends Controller
     public function login(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required',
+            'email'     => 'required',
+            'password'  => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => 'failed',
-                'message' => $validator->errors()->first(),
+                'status'    => 'failed',
+                'message'   => $validator->errors()->first(),
             ], 500);
         };
 
@@ -87,28 +87,28 @@ class AuthController extends Controller
                 if($login) {
                    
                     $response = [
-                        'status' => 'success',
-                        'message' => 'login is successful',
-                        'access_token' => $login,
-                        'user' => $check_user,
+                        'status'        => 'success',
+                        'message'       => 'login is successful',
+                        'access_token'  => $login,
+                        'user'          => $check_user,
                     ];
                 } else {
                     $response = [
-                        'status' => 'failed',
-                        'message' => 'Login is not successful',
+                        'status'    => 'failed',
+                        'message'   => 'Login is not successful',
                     ];
                 }
 
             } else {
                 $response = [
-                    'status' => 'failed',
-                    'message' => 'Password is invalid',
+                    'status'    => 'failed',
+                    'message'   => 'Password is invalid',
                 ];
             }
         } else {
             $response = [
-                'status' => 'failed',
-                'message' => 'User not registered!',
+                'status'    => 'failed',
+                'message'   => 'User not registered!',
             ];
         }
 
@@ -121,13 +121,13 @@ class AuthController extends Controller
 
        if ($removeToken) {
            $response = [
-               'status' => 'success',
-               'message' => 'Logout Berhasil!',
+               'status'     => 'success',
+               'message'    => 'Logout Berhasil!',
            ];
         } else {
             $response = [
-                'status' => 'failed',
-                'message' => 'Logout belum berhasil!',
+                'status'    => 'failed',
+                'message'   => 'Logout belum berhasil!',
             ];
         }
 

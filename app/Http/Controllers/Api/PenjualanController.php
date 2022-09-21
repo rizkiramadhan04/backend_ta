@@ -13,11 +13,12 @@ use Exception;
 class PenjualanController extends Controller
 {
     public function getPenjualan() {
+
         $penjualan = Penjualan::select('penjualans.*', 'produks.nama_produk as nama_produk')->join('produks', 'produks.id', '=', 'penjualans.produk_id')->get();
 
         return response()->json([
-            'status' => 'success',
-            'data' => $penjualan,
+            'status'    => 'success',
+            'data'      => $penjualan,
         ]);
     }
 
@@ -25,13 +26,13 @@ class PenjualanController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nama_pelanggan' => 'required',
-            'no_hp' => 'required',
-            'no_resi' => 'required',
-            'produk_id' => 'required',
-            'jumlah' => 'required',
-            'tgl_pesanan' => 'required',
-            'harga' => 'required',
-            'penjualan_via' => 'required',
+            'no_hp'          => 'required',
+            'no_resi'        => 'required',
+            'produk_id'      => 'required',
+            'jumlah'         => 'required',
+            'tgl_pesanan'    => 'required',
+            'harga'          => 'required',
+            'penjualan_via'  => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -44,7 +45,7 @@ class PenjualanController extends Controller
         DB::beginTransaction();
         try {
             
-        $penjualan = new Penjualan();
+        $penjualan                  = new Penjualan;
         $penjualan->nama_pelanggan  = $request->nama_pelanggan;
         $penjualan->no_hp           = $request->no_hp;
         $penjualan->no_resi         = $request->no_resi;
@@ -65,16 +66,16 @@ class PenjualanController extends Controller
         }
 
         return response()->json([
-            'status' => 'success',
-            'data' => $penjualan,
+            'status'    => 'success',
+            'data'      => $penjualan,
         ]);
             
         } catch (Exception $e) {
             DB::rollBack();
 
             return response()->json([
-                'status' => 'failed',
-                'message' => $e->getMessage(),
+                'status'    => 'failed',
+                'message'   => $e->getMessage(),
             ]);
         }
     }

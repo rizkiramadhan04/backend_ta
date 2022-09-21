@@ -25,6 +25,7 @@ Route::post('/logout', 'Api\AuthController@logout')->name('api.logout');
 Route::post('/get-produk', 'Api\ProdukController@index')->name('api.get-produk');
 Route::post('/insert-produk', 'Api\ProdukController@create')->name('api.create-produk');
 Route::post('/update-produk', 'Api\ProdukController@update')->name('api.update-produk');
+Route::post('/update-stok-produk', 'Api\ProdukController@updateStok')->name('api.update-stok-produk');
 Route::post('/delete-produk', 'Api\ProdukController@delete')->name('api.delete-produk');
 
 Route::get('/get-penjualan', 'Api\PenjualanController@getPenjualan')->name('api.get-penjualan');
