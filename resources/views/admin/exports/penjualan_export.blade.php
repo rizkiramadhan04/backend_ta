@@ -10,15 +10,14 @@
 			<thead style="background:#d1d1d1;">
 				<tr>
                          <th>No</th>
-                         <th>Nama Customer</th>
+                         <th>Nama Pembeli</th>
                          <th>Nomor HP</th>
                          <th>Nomor Resi</th>
                          <th>Nama Produk</th>
-                         <th>Produk Dibeli</th>
+                         <th>Jumlah Produk</th>
                          <th>Tanggal Pemesanan</th>
                          <th>Harga Produk</th>
-                         <th>Total Harga</th>
-                         <th>Total Produk Dibeli</th>
+                         <th>Pembelian Via</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,15 +25,14 @@
 				@foreach($model as $value)
 				<tr>
 					     <td>{{ $i++ }}</td>
-					     <td>{{ucwords($value->nama_pelanggan)}}</td>
-                         <td>{{$value->no_hp}}</td>
-                         <td>{{$value->no_resi}}</td>
-                         <td>{{ucwords($value->nama_produk)}}</td>
-                         <td>{{$value->jumlah_produk}}</td>
-                         <td>{{date('d-m-Y', strtotime($value->tgl_pesenan))}}</td>
-                         <td>{{$value->harga_produk}}</td>
-                         <td>{{$value->total_harga}}</td>
-                         <td>{{$value->total_jml_brg}}</td>
+					     <td>{{ ucwords($value->nama_pelanggan) }}</td>
+                         <td>{{ $value->no_hp }}</td>
+                         <td>{{ $value->no_resi }}</td>
+                         <td>{{ ucwords($value->nama_produk) }}</td>
+                         <td>{{ $value->jumlah }}</td>
+                         <td>{{ date('d-m-Y', strtotime($value->tgl_pesanan)) }}</td>
+                         <td>{{ $value->harga }}</td>
+                         <td>{{ $value->penjualan_via }}</td>
 				@endforeach
 			</tbody>
 		</table>

@@ -100,9 +100,6 @@ class ProdukController extends Controller
         $validator = Validator::make($request->all(), [
             'id' => 'required',
             'nama_produk' => 'required|string|max:225',
-            'jml_masuk' => 'required|integer|max:225',
-            'jml_keluar' => 'required|integer|max:225',
-            'total' => 'required|integer|max:225',
             'tgl_produk_masuk' => 'required',
             'harga_jual' => 'required|integer|max:225',
             'harga_beli' => 'required|integer|max:225',
@@ -124,9 +121,6 @@ class ProdukController extends Controller
             
             $produk->update([
                 'nama_produk' => $request->input('nama_produk'),
-                'jml_masuk' => $request->input('jml_masuk'),
-                'jml_keluar' => $request->input('jml_keluar'),
-                'total' => ($request->input('jml_masuk') - $request->input('jml_keluar')),
                 'tgl_produk_masuk' => $tgl_produk_masuk,
                 'harga_jual' => $request->input('harga_jual'),
                 'harga_beli' => $request->input('harga_beli'),
@@ -158,11 +152,13 @@ class ProdukController extends Controller
     }
 
     public function delete(Request $request) {
-        $produk = Produk::findOrFail($request->id);
-        $produk->delete();
 
-
+        $produk = Produk::find($request->id);
+        // dd($produk);
         if ($produk) {
+            
+            $produk->delete();
+
             $response = [
                 'status' => 'success',
                 'message' => 'Hapus Data Berhasil !',

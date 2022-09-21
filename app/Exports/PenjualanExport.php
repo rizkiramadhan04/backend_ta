@@ -14,7 +14,7 @@ class PenjualanExport implements FromView
     */
     public function view(): View
     {
-        $penjualan = Penjualan::all();
+        $penjualan = Penjualan::select('penjualans.*', 'produks.nama_produk as nama_produk')->join('produks', 'produks.id', '=', 'penjualans.produk_id')->get();;
         return view('admin.exports.penjualan_export', [
             'model' => $penjualan,
         ]);
