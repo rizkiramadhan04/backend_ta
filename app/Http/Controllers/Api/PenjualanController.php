@@ -45,14 +45,14 @@ class PenjualanController extends Controller
         try {
             
         $penjualan = new Penjualan();
-        $penjualan->nama_pelanggan = $request->nama_pelanggan;
-        $penjualan->no_hp = $request->no_hp;
-        $penjualan->no_resi = $request->no_resi;
-        $penjualan->produk_id = $request->produk_id;
-        $penjualan->jumlah = $request->jumlah;
-        $penjualan->tgl_pesanan = $request->tgl_pesanan;
-        $penjualan->harga = $request->harga;
-        $penjualan->penjualan_via = $request->penjualan_via;
+        $penjualan->nama_pelanggan  = $request->nama_pelanggan;
+        $penjualan->no_hp           = $request->no_hp;
+        $penjualan->no_resi         = $request->no_resi;
+        $penjualan->produk_id       = $request->produk_id;
+        $penjualan->jumlah          = $request->jumlah;
+        $penjualan->tgl_pesanan     = $request->tgl_pesanan;
+        $penjualan->harga           = $request->harga;
+        $penjualan->penjualan_via   = $request->penjualan_via;
         $penjualan->save();
 
         DB::commit();
@@ -60,7 +60,7 @@ class PenjualanController extends Controller
         if ($penjualan->save()) {
             $produk = Produk::findOrFail($penjualan->produk_id)->first();
             $produk->update([
-                'jml_keluar' => $penjualan->jumlah,
+                'jml_keluar' => ($produk->jml_keluar + $penjualan->jumlah),
             ]);
         }
 
