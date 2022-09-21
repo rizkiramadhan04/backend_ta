@@ -27,4 +27,5 @@ Route::post('/insert-produk', 'Api\ProdukController@create')->name('api.create-p
 Route::post('/update-produk', 'Api\ProdukController@update')->name('api.update-produk');
 Route::post('/delete-produk', 'Api\ProdukController@delete')->name('api.delete-produk');
 
+Route::get('/get-penjualan', 'Api\PenjualanController@getPenjualan')->name('api.get-penjualan');
 Route::post('/insert-penjualan', 'Api\PenjualanController@create')->name('api.create-penjualan');
