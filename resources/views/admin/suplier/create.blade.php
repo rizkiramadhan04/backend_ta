@@ -8,40 +8,40 @@
         <form action="{{ route('admin.user-create') }}" method="POST">
             @csrf
             <div class="form-group col-xl-6 col-md-4">
-                <label for="name">Nama Suplier</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                    aria-describedby="name" name="name">
-                @error('name')
+                <label for="nama_suplier">Nama Suplier</label>
+                <input type="text" class="form-control @error('nama_suplier') is-invalid @enderror" id="nama_suplier"
+                    name="nama_suplier">
+                @error('nama_suplier')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
-                <label for="emaipassword">Alamat</label>
-                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                    name="email">
-                @error('email')
+                <label for="alamat">Alamat</label>
+                <input type="alamat" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
+                    name="alamat">
+                @error('alamat')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
-                <label for="password">No Hp / Telepon</label>
-                <input type="text" class="form-control @error('password') is-invalid @enderror" id="password"
-                    name="password">
-                @error('password')
+                <label for="no_hp">No Hp / Telepon</label>
+                <input type="text" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp"
+                    name="no_hp">
+                @error('no_hp')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
             <div class="form-group col-xl-6 col-md-4">
-                <label for="password">Kategori Produk</label>
-                <input type="text" class="form-control @error('password') is-invalid @enderror" id="password"
-                    name="password">
-                @error('password')
+                <label for="kategori">Kategori Produk</label>
+                <input type="text" class="form-control @error('kategori') is-invalid @enderror" id="kategori"
+                    name="kategori">
+                @error('kategori')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
