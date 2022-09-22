@@ -55,5 +55,9 @@ Route::prefix('admin')->middleware('admin')->group( function(){
     Route::post('/user-update/{id}', 'Admin\UserController@update')->name('admin.user-update');
     Route::post('/user-delete/{id}', 'Admin\UserController@delete')->name('admin.user-delete');
 
+    //Suplier
+    Route::get('/suplier', 'Admin\SuplierController@index')->name('admin.suplier');
+    Route::get('/suplier-create', 'Admin\SuplierController@createPage')->name('admin.suplier-create');
+    Route::get('/suplier-pembelian', 'Admin\SuplierController@pembelian')->name('admin.suplier-pembelian');
 });
 

@@ -66,11 +66,52 @@
      </li>
 
 
-     <!-- Nav Item - Tables -->
+     {{-- <!-- Nav Item - Tables -->
      <li class="nav-item">
          <a class="nav-link" href="{{ route('admin.penjualan') }}">
              <i class="fas fa-fw fa-table"></i>
              <span>Data Penjualan</span></a>
+     </li> --}}
+
+     <!-- Divider -->
+     {{-- <hr class="sidebar-divider d-none d-md-block"> --}}
+
+     <!-- Nav Item - Tables -->
+     <li class="nav-item">
+         <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#data-laporan"
+             aria-expanded="true" aria-controls="collapsePages">
+             <i class="fas fa-fw fa-folder"></i>
+             <span>Data Laporan</span>
+         </a>
+         <div id="data-laporan" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+             <div class="bg-white py-2 collapse-inner rounded">
+                 <a class="collapse-item" href="{{ route('admin.produk') }}">
+                     <h6 class="collapse-header">History Produk Masuk</h6>
+                 </a>
+                 <a class="collapse-item" href="{{ route('admin.penjualan') }}">
+                     <h6 class="collapse-header">Data Penjualan</h6>
+                 </a>
+             </div>
+         </div>
+     </li>
+
+     <!-- Nav Item - Tables -->
+     <li class="nav-item">
+         <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#data-suplier"
+             aria-expanded="true" aria-controls="collapsePages">
+             <i class="fas fa-fw fa-folder"></i>
+             <span>Data Suplier</span>
+         </a>
+         <div id="data-suplier" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+             <div class="bg-white py-2 collapse-inner rounded">
+                 <a class="collapse-item" href="{{ route('admin.suplier') }}">
+                     <h6 class="collapse-header">Suplier</h6>
+                 </a>
+                 <a class="collapse-item" href="{{ route('admin.suplier-pembelian') }}">
+                     <h6 class="collapse-header">Buat Pembelian</h6>
+                 </a>
+             </div>
+         </div>
      </li>
 
      <!-- Divider -->
