@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Suplier;
 
 class SuplierController extends Controller
 {
     public function index() {
-        return view('admin.suplier.index');
+        $items = Suplier::all();
+
+        return view('admin.suplier.index', compact('items'));
     }
 
     public function createPage() {
@@ -16,6 +21,8 @@ class SuplierController extends Controller
     }
 
     public function create(Request $request) {
+
+        // dd($request->all());
 
         $validator = Validator::make($request->all(),[
             'nama_suplier'   => 'required',
@@ -32,12 +39,14 @@ class SuplierController extends Controller
         try {
             $model = new Suplier;
             $model->nama_suplier = $request->nama_suplier;
-            $model->Alamat       = $request->alamat;
-            $model->ho_hp        = $request->ho_hp;
+            $model->alamat       = $request->alamat;
+            $model->no_hp        = $request->no_hp;
             $model->kategori     = $request->kategori;
             $model->save();
 
             DB::commit();
+            
+            return redirect()->route('admin.suplier');
 
         } catch (Exception $e) {
 

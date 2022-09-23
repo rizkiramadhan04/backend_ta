@@ -4,7 +4,7 @@
     <div class="text-center">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Suplier</h1>
-            <a href="{{ route('admin.suplier-create') }}" class="btn btn-sm btn-success shadow-sm">
+            <a href="{{ route('admin.suplier-create-page') }}" class="btn btn-sm btn-success shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Suplier Baru
             </a>
         </div>
@@ -22,13 +22,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @forelse (as ) --}}
+                        @forelse ( $items as $row )
+                        @php
+                            $no = 1;
+                        @endphp
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $row->nama_suplier }}</td>
+                                <td>{{ $row->alamat }}</td>
+                                <td>{{ $row->no_hp }}</td>
+                                <td>{{ $row->kategori }}</td>
                                 <td>
                                     <a href="#" class="btn btn-success">
                                         <i class="fa fa-pencil-alt"></i>
@@ -42,12 +45,12 @@
                                         </button>
                                     </form>
                                 </td>
-                            {{-- @empty --}}
+                            @empty
                             <tr>
                                 <td colspan="8">Data Masih Kosong !!</td>
                             </tr>
                             </tr>
-                        {{-- @endforelse --}}
+                        @endforelse
                     </tbody>
                 </table>
             </div>

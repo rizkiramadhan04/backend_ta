@@ -10,6 +10,6 @@ class Suplier extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_suplier', 'alamat', 'no_hp', 'kategory'
+        'nama_suplier', 'alamat', 'no_hp', 'kategori'
     ];
 }
