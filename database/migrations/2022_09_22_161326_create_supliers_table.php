@@ -15,10 +15,10 @@ class CreateSupliersTable extends Migration
     {
         Schema::create('supliers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_suplier');
-            $table->text('alamat');
-            $table->string('no_hp');
-            $table->string('kategori');
+            $table->string('nama_suplier')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('kategori')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
