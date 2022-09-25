@@ -22,6 +22,7 @@ class CreateProduksTable extends Migration
             $table->date('tgl_produk_masuk')->nullable();
             $table->integer('harga_jual')->nullable();
             $table->integer('harga_beli')->nullable();
+            $table->integer('suplier_id')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

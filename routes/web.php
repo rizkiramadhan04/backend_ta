@@ -57,8 +57,10 @@ Route::prefix('admin')->middleware('admin')->group( function(){
 
     //Suplier
     Route::get('/suplier', 'Admin\SuplierController@index')->name('admin.suplier');
+    Route::post('/get-nama-produk', 'Admin\SuplierController@getProduk')->name('get-nama-produk');
     Route::get('/suplier-create', 'Admin\SuplierController@createPage')->name('admin.suplier-create-page');
     Route::post('/suplier-create', 'Admin\SuplierController@create')->name('admin.suplier-create');
     Route::get('/suplier-pembelian', 'Admin\SuplierController@pembelian')->name('admin.suplier-pembelian');
+    Route::post('/pembelian-create', 'Admin\SuplierController@save')->name('admin.pembelian-create');
 });
 

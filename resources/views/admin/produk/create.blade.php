@@ -39,7 +39,6 @@
                         {{ $message }}
                     </div>
                 @enderror
-
             </div>
             <div class="form-group col-xl-6 col-md-4">
                 <label for="harga-beli">Harga beli</label>
@@ -57,6 +56,21 @@
                 <input type="date" class="form-control @error('tgl_produk_masuk') is-invalid @enderror"
                     id="Tangal Barang Masuk" name="tgl_produk_masuk">
                 @error('tgl_produk_masuk')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+            <div class="form-group col-xl-6 col-md-4">
+                <label for="suplier_id">Nama Pemasok</label>
+                <select class="form-control @error('produk_id') is-invalid @enderror" id="suplier_id" name="suplier_id">
+                    <option value="">-- Pilih Produk --</option>
+                    @foreach ($nama_suplier as $row)
+                        <option value="{{ $row->id }}">{{ $row->nama_suplier }}</option>
+                    @endforeach
+                </select>
+                @error('suplier_id')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

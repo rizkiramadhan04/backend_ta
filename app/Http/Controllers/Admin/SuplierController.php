@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use PDF;
+use App\Models\Produk;
+use App\Models\Suplier;
+use App\Models\Pembelian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Suplier;
-use PDF;
 
 class SuplierController extends Controller
 {
@@ -57,13 +59,26 @@ class SuplierController extends Controller
         }
     }
 
-    public function pembelian() {
-        return view('admin.suplier.pembelian');
+    public function getProduk(Request $request) {
+        $produk = Produk::where('suplier_id', $request->suplier_id)->pluck('nama_produk', 'id');
+
+        return response()->json($produk);
+
+    }
+
+    public function pembelian(Request $request) {
+        $suplier = Suplier::all();
+        $produk  = Produk::all();
+        return view('admin.suplier.pembelian', compact('suplier', 'produk'));
     }
 
     public function save(Request $request) {
 
-        dd($request->all());
+        dd(array($request->all()));
+        // foreach ($request->all() as $row) {
+        //     # code...
+        //     dd($row);
+        // }
 
         $validator = Validator::make($request->all(), [
             'suplier_id'        => 'required',
@@ -89,7 +104,8 @@ class SuplierController extends Controller
         return redirect()->route('admin.suplier-pembelian');
             
         } catch (Exception $e) {
-            
+            DB::rollback();
+            return redirect()->route('admin.suplier-pembelian')->withErrors($e->getMessage())->withInput();
         }
     }
 
