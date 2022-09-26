@@ -73,22 +73,6 @@ class SuplierController extends Controller
     }
 
     public function save(Request $request) {
-        
-           $bahasa1 = array($request->nama_bahasa);
-           $bahasa2 = array($request->nama_bahasa2);
-
-           $total = count($bahasa1);
-            //   dd($total);
-        
-        for($i=0; $i<$total; $i++){
-
-            $data = [
-                $bahasa1[$i],
-                $bahasa2[$i],
-            ];
-            dd($data);
-       
-        }
 
         $validator = Validator::make($request->all(), [
             'suplier_id'        => 'required',
@@ -103,11 +87,26 @@ class SuplierController extends Controller
         DB::beginTransaction();
         try {
 
-        $pembelian = new Pembelian;
-        $pembelian->suplier_id    = $request->suplier_id;
-        $pembelian->produk_id     = $request->produk_id;
-        $pembelian->jumlah        = $request->jumlah;
-        $pembelian->save();
+           $produk_id = array($request->produk_id);
+           $jumlah = array($request->jumlah);
+           $total = count($produk_id);
+
+        //    dd($total);
+           
+           for($i = 0; $i < $total; $i++){
+               
+                $produk = implode(',', $produk_id[$i]);
+                $jml = implode(',', $jumlah[$i]);
+
+            // dd($jml);
+       
+            $pembelian = new Pembelian;
+            $pembelian->suplier_id    = $request->suplier_id;
+            $pembelian->produk_id     = $produk;
+            $pembelian->jumlah        = $jml;
+            $pembelian->save();
+        }
+
 
         DB::commit();
 
