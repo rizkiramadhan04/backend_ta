@@ -75,10 +75,10 @@ class SuplierController extends Controller
     public function save(Request $request) {
 
         dd(array($request->all()));
-        // foreach ($request->all() as $row) {
-        //     # code...
-        //     dd($row);
-        // }
+        foreach ($request->all() as $row) {
+            # code...
+            dd($row);
+        }
 
         $validator = Validator::make($request->all(), [
             'suplier_id'        => 'required',

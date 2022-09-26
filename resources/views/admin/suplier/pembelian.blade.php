@@ -10,7 +10,21 @@
         <form method="POST" action="{{ route('admin.pembelian-create') }}">
             @csrf
 
-            <div class="form-group col-xl-6 col-md-4">
+            <div class="field_wrapper">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-10">
+                                <input class="form-control" placeholder="Bahasa Pemrograman" type="text" name="nama_bahasa[]" value=""/>
+                        </div>
+                        <div class="col-md-2">
+                                <a class="btn btn-success" href="javascript:void(0);" id="add_button" title="Add field">TAMBAH</a>
+                        </div>           
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary" type="submit">SIMPAN</a>
+
+            {{-- <div class="form-group col-xl-6 col-md-4">
                 <label for="suplier_id">Nama Suplier</label>
                 <select class="form-control @error('suplier_id') is-invalid @enderror" id="suplier_id" name="suplier_id">
                     <option value="">-- Pilih Suplier --</option>
@@ -62,7 +76,7 @@
                             {{-- <div class="col-md-3">
 		                    <textarea name="deskripsi_produk" placeholder="Deskripsi Produk" class="form-control" rows="1"></textarea>
 		                </div> --}}
-                            <div class="button-group">
+                            {{-- <div class="button-group">
                                 <button type="button" class="btn btn-success btn-tambah"><i
                                         class="fa fa-plus"></i></button>
                                 <button type="button" class="btn btn-danger btn-hapus" style="display:none;"><i
@@ -71,7 +85,7 @@
                         </div>
                     @endforeach
             </div>
-            <button type="submit" class="btn btn-primary btn-simpan"></i> Buat PDF </button>
+            <button type="submit" class="btn btn-primary btn-simpan"></i> Buat PDF </button> --}}
         </form>
 
     </div>
@@ -80,64 +94,34 @@
 @push('js')
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript">
-        function addForm() {
-            var addrow = '<div class="form-group baru-data row">\
-                                                                    <div class="col-md-3">\
-                                                                        <select class="form-control" id="nama_produk">\
-                                                                            <option value="">-- Nama Produk --</option>\
-                                                                            <option value="{{ $row->id }}">{{ $row->nama_produk }}</option>\
-                                                                        </select>\
-                                                                        @error('produk_id')\
-                                                                            <div class="invalid-feedback">\
-                                                                                {{ $message }}\
-                                                                            </div>\
-                                                                        @enderror\
-                                                                    </div>\
-                                                                    <div class="col-md-2">\
-                                                                        <input type="number" name="jumlah" placeholder="Jumlah Produk" class="form-control">\
-                                                                        @error('jumlah')\
-                                                                            <div class="invalid-feedback">\
-                                                                                {{ $message }}\
-                                                                            </div>\
-                                                                        @enderror\
-                                                                    </div>\
-                                                                    <div class="button-group">\
-                                                                        <button type="button" class="btn btn-success btn-tambah"><i class="fa fa-plus"></i></button>\
-                                                                        <button type="button" class="btn btn-danger btn-hapus"><i class="fa fa-times"></i></button>\
-                                                                    </div>\
-                                                                    </div>'
-            $("#dynamic_form").append(addrow);
-        }
 
-        $("#dynamic_form").on("click", ".btn-tambah", function() {
-            addForm()
-            $(this).css("display", "none")
-            var valtes = $(this).parent().find(".btn-hapus").css("display", "");
-        })
-
-        $("#dynamic_form").on("click", ".btn-hapus", function() {
-            $(this).parent().parent('.baru-data').remove();
-            var bykrow = $(".baru-data").length;
-            if (bykrow == 1) {
-                $(".btn-hapus").css("display", "none")
-                $(".btn-tambah").css("display", "");
-            } else {
-                $('.baru-data').last().find('.btn-tambah').css("display", "");
+    $(document).ready(function(){
+        var maxField = 10; //Input fields increment limitation
+        var addButton = $('#add_button'); //Add button selector
+        var wrapper = $('.field_wrapper'); //Input field wrapper
+        var fieldHTML = '<div class="form-group add"><div class="row">';
+        fieldHTML=fieldHTML + '<div class="col-md-10"><input class="form-control" placeholder="Bahasa Pemrograman" type="text" name="nama_bahasa[]" /></div>';
+        fieldHTML=fieldHTML + '<div class="col-md-2"><a href="javascript:void(0);" class="remove_button btn btn-danger">HAPUS</a></div>';
+        fieldHTML=fieldHTML + '</div></div>'; 
+        var x = 1; //Initial field counter is 1
+        
+        //Once add button is clicked
+        $(addButton).click(function(){
+            //Check maximum number of input fields
+            if(x < maxField){ 
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); //Add field html
             }
         });
-
-        // $('.btn-simpan').on('click', function() {
-        //     $('#dynamic_form').find('input[type="text"], input[type="number"], select, textarea').each(function() {
-        //         if ($(this).val() == "") {
-        //             event.preventDefault()
-        //             $(this).css('border-color', 'red');
-
-        //             $(this).on('focus', function() {
-        //                 $(this).css('border-color', '#ccc');
-        //             });
-        //         }
-        //     })
-        // });
+        
+        //Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function(e){
+            e.preventDefault();
+            $(this).parent('').parent('').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });
+     
     </script>
     <script type="text/javascript">
         $.ajaxSetup({
