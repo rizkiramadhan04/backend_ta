@@ -73,11 +73,21 @@ class SuplierController extends Controller
     }
 
     public function save(Request $request) {
+        
+           $bahasa1 = array($request->nama_bahasa);
+           $bahasa2 = array($request->nama_bahasa2);
 
-        dd(array($request->all()));
-        foreach ($request->all() as $row) {
-            # code...
-            dd($row);
+           $total = count($bahasa1);
+            //   dd($total);
+        
+        for($i=0; $i<$total; $i++){
+
+            $data = [
+                $bahasa1[$i],
+                $bahasa2[$i],
+            ];
+            dd($data);
+       
         }
 
         $validator = Validator::make($request->all(), [

@@ -14,7 +14,10 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-10">
-                                <input class="form-control" placeholder="Bahasa Pemrograman" type="text" name="nama_bahasa[]" value=""/>
+                                <input class="form-control" placeholder="Bahasa Pemrograman" type="text" name="nama_bahasa" value=""/>
+                                <div class="col-md-10">
+                                <input class="form-control" placeholder="Bahasa Pemrograman" type="text" name="nama_bahasa2" value=""/>
+                        </div>
                         </div>
                         <div class="col-md-2">
                                 <a class="btn btn-success" href="javascript:void(0);" id="add_button" title="Add field">TAMBAH</a>
@@ -100,6 +103,7 @@
         var addButton = $('#add_button'); //Add button selector
         var wrapper = $('.field_wrapper'); //Input field wrapper
         var fieldHTML = '<div class="form-group add"><div class="row">';
+        fieldHTML=fieldHTML + '<div class="col-md-10"><input class="form-control" placeholder="Bahasa Pemrograman" type="text" name="nama_bahasa[]" /></div>';
         fieldHTML=fieldHTML + '<div class="col-md-10"><input class="form-control" placeholder="Bahasa Pemrograman" type="text" name="nama_bahasa[]" /></div>';
         fieldHTML=fieldHTML + '<div class="col-md-2"><a href="javascript:void(0);" class="remove_button btn btn-danger">HAPUS</a></div>';
         fieldHTML=fieldHTML + '</div></div>'; 
