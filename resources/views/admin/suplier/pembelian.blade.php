@@ -15,7 +15,7 @@
                     <h5>Suplier</h5>
                     @foreach ($suplier as $row)
                     <div class="col-md-6">
-                        <select class="form-control" id="nama_produk" name="produk_id[]">
+                        <select class="form-control" id="nama_produk" name="suplier_id">
                             <option value="">-- Nama Suplier --</option>
                             <option value="{{ $row->id }}">{{ $row->nama_suplier }}</option>
                         </select>
@@ -28,11 +28,12 @@
                     @endforeach
                     <h5 class="mt-5">Produk</h5>
                     <div class="row">
-                        @foreach ($produk as $row)
-                            <div class="col-md-6">
-                                <select class="form-control" id="nama_produk" name="produk_id[]">
-                                    <option value="">-- Nama Produk --</option>
-                                    <option value="{{ $row->id }}">{{ $row->nama_produk }}</option>
+                        <div class="col-md-6">
+                            <select class="form-control" id="nama_produk" name="nama_produk[]">
+                                <option value="">-- Nama Produk --</option>
+                                @foreach ($produk as $row)
+                                    <option value="{{ $row->nama_produk }}">{{ $row->nama_produk }}</option>
+                                    @endforeach
                                 </select>
                                 @error('produk_id')
                                     <div class="invalid-feedback">
@@ -40,7 +41,6 @@
                                     </div>
                                 @enderror
                             </div>
-                        @endforeach
                         <div class="col-md-4">
                             <input class="form-control" placeholder="Jumlah" type="number" name="jumlah[]"
                                 value="" />
@@ -72,7 +72,7 @@
             var wrapper = $('.field_wrapper'); //Input field wrapper
             var fieldHTML = '<div class="form-group add"><div class="row">';
             fieldHTML = fieldHTML +
-                ' @foreach ($produk as $row) <div class="col-md-6"> <select class="form-control" id="nama_produk" name="produk_id[]"> <option value="">-- Nama Produk --</option> <option value="{{ $row->id }}">{{ $row->nama_produk }}</option> </select> @error('produk_id') <div class="invalid-feedback"> {{ $message }} </div> @enderror </div> @endforeach';
+                '<div class="col-md-6"> <select class="form-control" id="nama_produk" name="nama_produk[]"> <option value="">-- Nama Produk --</option> @foreach ($produk as $row) <option value="{{ $row->nama_produk }}">{{ $row->nama_produk }}</option> @endforeach</select> @error('produk_id') <div class="invalid-feedback"> {{ $message }} </div> @enderror </div>';
             fieldHTML = fieldHTML +
                 '<div class="col-md-4"><input class="form-control" placeholder="Jumlah" type="number" name="jumlah[]" /></div>';
             fieldHTML = fieldHTML +
@@ -95,47 +95,6 @@
                 $(this).parent('').parent('').remove(); //Remove field html
                 x--; //Decrement field counter
             });
-        });
-    </script>
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $(document).ready(function() {
-
-            //ambil data nama data produk berdasarkan toko pemasoknya
-
-            console.log($('#nama_produk').val());
-            $('#suplier_id').on('change', function() {
-
-                // console.log($('#suplier_id').val());
-
-                $.ajax({
-                    url: "{{ url('/admin/suplier-pembelian') }}",
-                    method: "POST",
-                    data: {
-                        suplier_id: $('#suplier_id').val()
-                    },
-                    success: function(data) {
-                        console.log(data);
-                        $('#nama_produk').empty();
-                        if ($('#suplier_id').val() != "") {
-                            $.each(data, function(id, name) {
-                                $('#nama_produk').append(new Option(name, id));
-                            });
-                        } else {
-                            $('#nama_produk').append(
-                                '<option value="">-- Nama Produk --</option>');
-                        }
-
-                    }
-                });
-            });
-            //selesai
-
         });
     </script>
 @endpush

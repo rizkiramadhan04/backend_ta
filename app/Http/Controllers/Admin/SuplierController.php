@@ -74,9 +74,11 @@ class SuplierController extends Controller
 
     public function save(Request $request) {
 
+        // dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'suplier_id'        => 'required',
-            'produk_id'         => 'required',
+            'nama_produk'         => 'required',
             'jumlah'            => 'required',
         ]);
 
@@ -87,22 +89,20 @@ class SuplierController extends Controller
         DB::beginTransaction();
         try {
 
-           $produk_id = array($request->produk_id);
+           $nama_produk = array($request->nama_produk);
            $jumlah = array($request->jumlah);
-           $total = count($produk_id);
+           $total = count($nama_produk);
 
-        //    dd($total);
            
            for($i = 0; $i < $total; $i++){
-               
-                $produk = implode(',', $produk_id[$i]);
+
+                $produk = implode(',', $nama_produk[$i]);
                 $jml = implode(',', $jumlah[$i]);
 
-            // dd($jml);
        
             $pembelian = new Pembelian;
             $pembelian->suplier_id    = $request->suplier_id;
-            $pembelian->produk_id     = $produk;
+            $pembelian->nama_produk     = $produk;
             $pembelian->jumlah        = $jml;
             $pembelian->save();
         }
@@ -119,8 +119,16 @@ class SuplierController extends Controller
     }
 
     public function exportPdf() {
-        $items = Pembelian::all();
-        $pdf   = PDF::loadview('admin.exports', ['items' => $items]);
+        $pembelian = Penjualan::find($id);
+        if ($pembelian) {
+            $nama_produk = $pembelian->nama_produk;
+            $jml = $pembelian->jumlah;
+
+            $produk = explode(',', $nama_produk);
+            $jumlah = explode(',', $jml);
+
+            $pdf   = PDF::loadview('admin.exports', ['nama_produk' => $produk, 'jumlah' => $jumlah]);
+        }
         return $pdf->download('laporan-post.pdf');
     }
 }

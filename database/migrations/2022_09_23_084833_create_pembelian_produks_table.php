@@ -16,7 +16,7 @@ class CreatePembelianProduksTable extends Migration
         Schema::create('pembelian_produks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('suplier_id')->nullable();
-            $table->string('produk_id')->nullable();
+            $table->text('nama_produk')->nullable();
             $table->string('jumlah')->nullable();
 
             $table->softDeletes();
