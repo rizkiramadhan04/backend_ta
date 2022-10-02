@@ -91,6 +91,9 @@
                  <a class="collapse-item" href="{{ route('admin.penjualan') }}">
                      <h6 class="collapse-header">Data Penjualan</h6>
                  </a>
+                 <a class="collapse-item" href="{{ route('admin.pembelian') }}">
+                     <h6 class="collapse-header">Data Pembelian</h6>
+                 </a>
              </div>
          </div>
      </li>
@@ -100,15 +103,12 @@
          <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#data-suplier"
              aria-expanded="true" aria-controls="collapsePages">
              <i class="fas fa-fw fa-folder"></i>
-             <span>Data Suplier</span>
+             <span>Data Pemasok</span>
          </a>
          <div id="data-suplier" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <a class="collapse-item" href="{{ route('admin.suplier') }}">
-                     <h6 class="collapse-header">Suplier</h6>
-                 </a>
-                 <a class="collapse-item" href="{{ route('admin.suplier-pembelian') }}">
-                     <h6 class="collapse-header">Buat Pembelian</h6>
+                     <h6 class="collapse-header">Pemasok</h6>
                  </a>
              </div>
          </div>

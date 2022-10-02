@@ -118,17 +118,39 @@ class SuplierController extends Controller
         }
     }
 
-    public function exportPdf() {
-        $pembelian = Penjualan::find($id);
+    public function exportPdf($id) {
+        $pembelian = Pembelian::find($id);
         if ($pembelian) {
             $nama_produk = $pembelian->nama_produk;
             $jml = $pembelian->jumlah;
 
             $produk = explode(',', $nama_produk);
             $jumlah = explode(',', $jml);
+            $count_produk = count($produk);
+            $nama_pemasok = Suplier::where('id', $pembelian->suplier_id)->first();
+            
+            $data = [
+                'nama_produk' => $produk,
+                'jumlah' => $jumlah,
+            ];
+            // dd($nama_pemasok->nama_suplier);
 
-            $pdf   = PDF::loadview('admin.exports', ['nama_produk' => $produk, 'jumlah' => $jumlah]);
+            $pdf   = PDF::loadview('admin.exports.pembelian_pdf', ['count_produk' => $count_produk, 'nama_pemasok' => $nama_pemasok, 'nama_produk' => $produk, 'jumlah' => $jumlah]);
         }
         return $pdf->download('laporan-post.pdf');
+    }
+
+    public function pembelianPage() {
+        $items = Pembelian::all();
+
+        foreach ($items as $row) {
+            
+            $suplier = Suplier::where('id', $row->suplier_id)->first();
+            
+            $nama_pemasok = $suplier->nama_suplier;
+        }
+
+
+        return view('admin.suplier.pembelian-index', compact('items', 'nama_pemasok'));
     }
 }

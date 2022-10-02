@@ -62,5 +62,7 @@ Route::prefix('admin')->middleware('admin')->group( function(){
     Route::post('/suplier-create', 'Admin\SuplierController@create')->name('admin.suplier-create');
     Route::get('/suplier-pembelian', 'Admin\SuplierController@pembelian')->name('admin.suplier-pembelian');
     Route::post('/pembelian-create', 'Admin\SuplierController@save')->name('admin.pembelian-create');
+    Route::get('/pembelian', 'Admin\SuplierController@pembelianPage')->name('admin.pembelian');
+    Route::get('/pembelian-pdf/{id}', 'Admin\SuplierController@exportPdf')->name('admin.pembelian-pdf');
 });
 
