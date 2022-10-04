@@ -133,11 +133,11 @@ class SuplierController extends Controller
                 'nama_produk' => $produk,
                 'jumlah' => $jumlah,
             ];
-            // dd($nama_pemasok->nama_suplier);
+            // dd($pembelian->created_at);
 
             $pdf   = PDF::loadview('admin.exports.pembelian_pdf', ['count_produk' => $count_produk, 'nama_pemasok' => $nama_pemasok, 'nama_produk' => $produk, 'jumlah' => $jumlah]);
         }
-        return $pdf->download('laporan-post.pdf');
+        return $pdf->download('pemesanan_produk_('.date('d-m-Y', strtotime($pembelian->created_at)).').pdf');
     }
 
     public function pembelianPage() {

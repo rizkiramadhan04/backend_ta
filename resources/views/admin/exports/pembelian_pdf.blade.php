@@ -56,7 +56,7 @@
         <p>Di Tempat</p>
         <br>
         <p>Dengan hormat,</p>
-        <p>Sehubungan dengan kebutuhan untuk memenuhi stok produk yang sudah kosong pada Toko kami,
+        <p>Sehubungan dengan adanya kebutuhan untuk memenuhi stok produk yang sudah kosong pada Toko kami.
             Kami ingin mengajukan permohonan kepada PT/Toko : <b>{{ $nama_pemasok->nama_suplier }}</b> untuk bisa dapat
             memenuhi kebutuhan stok produk kami, antara
             lain sebagai berikut :
