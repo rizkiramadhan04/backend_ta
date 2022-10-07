@@ -12,14 +12,14 @@
 
             <div class="field_wrapper">
                 <div class="form-group">
-                    <h5>Suplier</h5>
-                    @foreach ($suplier as $row)
+                    <h5>Pemasok</h5>
+                    @foreach ($pemasok as $row)
                     <div class="col-md-6">
-                        <select class="form-control" id="nama_produk" name="suplier_id">
-                            <option value="">-- Nama Suplier --</option>
-                            <option value="{{ $row->id }}">{{ $row->nama_suplier }}</option>
+                        <select class="form-control" id="nama_produk" name="pemasok_id">
+                            <option value="">-- Nama Pemasok --</option>
+                            <option value="{{ $row->id }}">{{ $row->nama_pemasok }}</option>
                         </select>
-                        @error('suplier_id')
+                        @error('pemasok_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

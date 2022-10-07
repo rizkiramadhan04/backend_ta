@@ -107,7 +107,7 @@
          </a>
          <div id="data-suplier" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <a class="collapse-item" href="{{ route('admin.suplier') }}">
+                 <a class="collapse-item" href="{{ route('admin.pemasok') }}">
                      <h6 class="collapse-header">Pemasok</h6>
                  </a>
              </div>

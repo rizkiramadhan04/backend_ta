@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Produk;
-use App\Models\Suplier;
+use App\Models\Pemasok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -21,9 +21,9 @@ class ProdukController extends Controller
     }
 
     public function createPage() {
-        $nama_suplier = Suplier::all();
+        $nama_pemasok = Pemasok::all();
 
-        return view('admin.produk.create', compact('nama_suplier'));
+        return view('admin.produk.create', compact('nama_pemasok'));
     }
 
     public function create(Request $request) {
@@ -56,7 +56,7 @@ class ProdukController extends Controller
         $produk->harga_beli = $request->harga_beli;
         $produk->jml_keluar = 0;
         $produk->total = $produk->jml_masuk - $produk->jml_keluar;
-        $produk->suplier_id = $request->suplier_id;
+        $produk->pemasok_id = $request->pemasok_id;
 
         $produk->save();
         DB::commit();

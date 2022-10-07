@@ -55,14 +55,14 @@ Route::prefix('admin')->middleware('admin')->group( function(){
     Route::post('/user-update/{id}', 'Admin\UserController@update')->name('admin.user-update');
     Route::post('/user-delete/{id}', 'Admin\UserController@delete')->name('admin.user-delete');
 
-    //Suplier
-    Route::get('/suplier', 'Admin\SuplierController@index')->name('admin.suplier');
-    Route::post('/get-nama-produk', 'Admin\SuplierController@getProduk')->name('get-nama-produk');
-    Route::get('/suplier-create', 'Admin\SuplierController@createPage')->name('admin.suplier-create-page');
-    Route::post('/suplier-create', 'Admin\SuplierController@create')->name('admin.suplier-create');
-    Route::get('/suplier-pembelian', 'Admin\SuplierController@pembelian')->name('admin.suplier-pembelian');
-    Route::post('/pembelian-create', 'Admin\SuplierController@save')->name('admin.pembelian-create');
-    Route::get('/pembelian', 'Admin\SuplierController@pembelianPage')->name('admin.pembelian');
-    Route::get('/pembelian-pdf/{id}', 'Admin\SuplierController@exportPdf')->name('admin.pembelian-pdf');
+    //Pemasok
+    Route::get('/pemasok', 'Admin\PemasokController@index')->name('admin.pemasok');
+    Route::post('/get-nama-produk', 'Admin\PemasokController@getProduk')->name('get-nama-produk');
+    Route::get('/pemasok-create', 'Admin\PemasokController@createPage')->name('admin.pemasok-create-page');
+    Route::post('/pemasok-create', 'Admin\PemasokController@create')->name('admin.pemasok-create');
+    Route::get('/pemasok-pembelian', 'Admin\PemasokController@pembelian')->name('admin.pemasok-pembelian');
+    Route::post('/pembelian-create', 'Admin\PemasokController@save')->name('admin.pembelian-create');
+    Route::get('/pembelian', 'Admin\PemasokController@pembelianPage')->name('admin.pembelian');
+    Route::get('/pembelian-pdf/{id}', 'Admin\PemasokController@exportPdf')->name('admin.pembelian-pdf');
 });
 

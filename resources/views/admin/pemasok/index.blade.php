@@ -3,9 +3,9 @@
 @section('content')
     <div class="text-center">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Data Pembelian Produk</h1>
-            <a href="{{ route('admin.suplier-pembelian') }}" class="btn btn-sm btn-success shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Pembelian
+            <h1 class="h3 mb-0 text-gray-800">Pemasok</h1>
+            <a href="{{ route('admin.pemasok-create-page') }}" class="btn btn-sm btn-success shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Pemasok Baru
             </a>
         </div>
         <div class="row">
@@ -14,28 +14,31 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Suplier</th>
-                            <th>Nama Produk</th>
-                            <th>Jumlah</th>
+                            <th>Nama</th>
+                            <th>Alamat</th>
+                            <th>Nomor Hp / Telepon</th>
+                            <th>Kategori Produk</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ( $items as $row )
                         @php
                             $no = 1;
                         @endphp
-                        @forelse ($items as $row)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $nama_pemasok }}</td>
-                                <td>{{ $row->nama_produk }}</td>
-                                <td>{{ $row->jumlah }}</td>
+                                <td>{{ $row->nama_pemasok }}</td>
+                                <td>{{ $row->alamat }}</td>
+                                <td>{{ $row->no_hp }}</td>
+                                <td>{{ $row->kategori }}</td>
                                 <td>
-                                    <a href="{{ route('admin.pembelian-pdf', $row->id) }}" class="btn btn-success">
+                                    <a href="#" class="btn btn-success">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="#" method="post" class="d-inline">
+                                    <form action="#" method="post"
+                                        class="d-inline">
                                         @csrf
                                         <button class="btn btn-danger">
                                             <i class="fa fa-trash"></i>

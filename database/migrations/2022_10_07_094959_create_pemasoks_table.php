@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSupliersTable extends Migration
+class CreatePemasoksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateSupliersTable extends Migration
      */
     public function up()
     {
-        Schema::create('supliers', function (Blueprint $table) {
+        Schema::create('pemasoks', function (Blueprint $table) {
+
             $table->bigIncrements('id');
-            $table->string('nama_suplier')->nullable();
+            $table->string('nama_pemasok')->nullable();
             $table->text('alamat')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('kategori')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
+
         });
     }
 
@@ -32,6 +34,6 @@ class CreateSupliersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supliers');
+        Schema::dropIfExists('pemasoks');
     }
 }

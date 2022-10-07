@@ -3,7 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Produk;
-use App\Models\Suplier;
+use App\Models\Pemasok;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -21,7 +21,7 @@ class ProdukImport implements ToModel, WithHeadingRow
     {   
         $date_d = $row['tgl_produk_masuk'];
         $date_s = str_replace('/', '-', $date_d);
-        $pemasok_id = Suplier::where('nama_suplier', $row['nama_pemasok'])->first();
+        $pemasok_id = Pemasok::where('nama_pemasok', $row['nama_pemasok'])->first();
            
         return new Produk([
 

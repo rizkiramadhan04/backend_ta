@@ -3,15 +3,15 @@
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex justify-content-between mb-4 text-center">
-            <h1 class="h3 mb-0 text-gray-800">Tambah Suplier</h1>
+            <h1 class="h3 mb-0 text-gray-800">Tambah Pemasok</h1>
         </div>
-        <form action="{{ route('admin.suplier-create') }}" method="POST">
+        <form action="{{ route('admin.pemasok-create') }}" method="POST">
             @csrf
             <div class="form-group col-xl-6 col-md-4">
-                <label for="nama_suplier">Nama Suplier</label>
-                <input type="text" class="form-control @error('nama_suplier') is-invalid @enderror" id="nama_suplier"
-                    name="nama_suplier">
-                @error('nama_suplier')
+                <label for="nama_pemasok">Nama Pemasok</label>
+                <input type="text" class="form-control @error('nama_pemasok') is-invalid @enderror" id="nama_pemasok"
+                    name="nama_pemasok">
+                @error('nama_pemasok')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

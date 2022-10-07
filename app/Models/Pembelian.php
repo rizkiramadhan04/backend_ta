@@ -11,5 +11,5 @@ class Pembelian extends Model
 
     protected $table = 'pembelian_produks';
 
-    protected $fillable = ['suplier_id', 'nama_produk', 'jumlah'];
+    protected $fillable = ['pemasok_id', 'nama_produk', 'jumlah'];
 }
