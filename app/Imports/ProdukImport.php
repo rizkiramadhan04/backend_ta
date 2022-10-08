@@ -32,7 +32,7 @@ class ProdukImport implements ToModel, WithHeadingRow
             'harga_beli' => $row['harga_beli'],
             'jml_keluar' => $row['jml_keluar'],
             'total' => ($row['jml_masuk'] - $row['jml_keluar']),
-            'suplier_id' => $pemasok_id->id,
+            'pemasok_id' => $pemasok_id->id,
             
         ]);
 
