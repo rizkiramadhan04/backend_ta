@@ -85,7 +85,7 @@
          </a>
          <div id="data-laporan" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <a class="collapse-item" href="{{ route('admin.produk') }}">
+                 <a class="collapse-item" href="{{ route('admin.riwayat-pembelian') }}">
                      <h6 class="collapse-header">History Produk Masuk</h6>
                  </a>
                  <a class="collapse-item" href="{{ route('admin.penjualan') }}">

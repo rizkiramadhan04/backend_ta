@@ -39,6 +39,9 @@ Route::prefix('admin')->middleware('admin')->group( function(){
     Route::post('/update-produk/{id}', 'Admin\ProdukController@update')->name('admin.update-produk');
     Route::post('/update-stock-product', 'Admin\ProdukController@updateStock')->name('admin.update-stock');
     Route::post('/delete-produk/{id}', 'Admin\ProdukController@delete')->name('admin.delete-produk');
+
+    //Riwayat Pembelian
+    Route::get('/riwayat-pembelian', 'Admin\ProdukController@riwayat')->name('admin.riwayat-pembelian');
     
     //import export
     Route::post('/import-produk', 'Import\ProdukImportController@import')->name('admin.produk.import'); 

@@ -102,10 +102,11 @@ class ProdukController extends Controller
 
         DB::beginTransaction();
         try {
+            // dd($request->all());
 
             $produk = Produk::findOrFail($request->produk_id);
-            $total = ($produk->total + $request->jml_masuk);
-            // dd($total);
+            $total = ($produk->total + $request->input_stock);
+
 
             $produk->update([
             'jml_masuk' => $request->input_stock,
@@ -164,6 +165,50 @@ class ProdukController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->route('admin.update-produk-page')->with('error', $e->getMessage());
+        }
+    }
+
+    public function riwayat() {
+        $produk = ProdukMasuk::all();
+        return view('admin.produk.riwayat_pembelian_index', compact('produk'));
+    }
+
+    public function riwayatSave(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'produk_id'         => 'required',
+            'jumlah'            => 'required',
+            'tgl_produk_masuk'  => 'required',
+            'pemasok_id'        => 'required',
+        ],[
+            'produk_id.required'            => 'Nama produk tidak boleh kosong',
+            'jumlah.required'               => 'Jumlah produk tidak boleh kosong',
+            'tgl_produk_masuk.required'     => 'Tanggal tidak boleh kosong',
+            'pemasok_id.required'           => 'Nama pemasok tidak boleh kosong',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.')->withErrors($validator->errors())->withInput();
+        }
+
+        DB::beginTransaction();
+        try {
+            
+            $produk = new ProdukMasuk();
+            $produk->produk_id          = $request->produk_id;
+            $produk->jumlah             = $request->jumlah;
+            $produk->tgl_produk_masuk   = $request->tgl_produk_masuk;
+            $produk->pemasok_id         = $request->pemasok_id;
+            $produk->save();
+
+            DB::commit();
+
+            return redirect()->route();
+
+        } catch (\Exception $e) {
+            
+            DB::rollback();
+            return redirect()->route()->withErrors($e->getMessage());
         }
     }
 

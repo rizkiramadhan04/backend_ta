@@ -3,7 +3,7 @@
 @section('content')
     <div class="text-center">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Produk</h1>
+            <h1 class="h3 mb-0 text-gray-800">Riwayat Produk Masuk</h1>
             <a href="{{ route('admin.produk.export') }}" class="btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Export
             </a>
@@ -15,10 +15,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Produk</th>
-                            <th>Stock Saat Ini</th>
-                            <th>Jumlah yang Keluar</th>
-                            <th>Harga Beli</th>
-                            <th>Harga Jual</th>
+                            <th>Stok Yang Masuk</th>
                             <th>Tgl Barang Masuk</th>
                             <th>Action</th>
                         </tr>
@@ -27,14 +24,11 @@
                         @php
                             $no = 1;
                         @endphp
-                        @forelse ($item as $obj)
+                        @forelse ($produk as $obj)
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $obj->nama_produk }}</td>
-                                <td>{{ $obj->total - $obj->jml_keluar }}</td>
-                                <td>{{ $obj->jml_keluar }}</td>
-                                <td>{{ $obj->harga_beli }}</td>
-                                <td>{{ $obj->harga_jual }}</td>
+                                <td>{{ $obj->jml_masuk }}</td>
                                 <td>{{ $obj->tgl_produk_masuk }}</td>
                                 <td>
                                     <a href="{{ route('admin.update-produk-page', $obj->id) }}" class="btn btn-success">
