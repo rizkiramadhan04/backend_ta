@@ -31,8 +31,8 @@
                                 <td>{{ $row->nama_produk }}</td>
                                 <td>{{ $row->jumlah }}</td>
                                 <td>
-                                    <a href="{{ route('admin.pembelian-pdf', $row->id) }}" class="btn btn-success">
-                                        <i class="fa fa-pencil-alt"></i>
+                                    <a href="{{ route('admin.pembelian-pdf', $row->id) }}" class="btn btn-info">
+                                        <i class="fa-solid fa-file-pdf"></i>
                                     </a>
 
                                     <form action="#" method="post" class="d-inline">

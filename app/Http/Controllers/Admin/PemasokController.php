@@ -105,12 +105,12 @@ class pemasokController extends Controller
             $pembelian->nama_produk     = $produk;
             $pembelian->jumlah        = $jml;
             $pembelian->save();
-        }
+            }
 
 
         DB::commit();
 
-        return redirect()->route('admin.pemasok-pembelian');
+        return redirect()->route('admin.pemasok.pembelian-index');
             
         } catch (Exception $e) {
             DB::rollback();
@@ -143,19 +143,7 @@ class pemasokController extends Controller
     public function pembelianPage() {
         $items = Pembelian::select('pembelian_produks.*', 'pemasoks.nama_pemasok as nama_pemasok')->join('pemasoks', 'pembelian_produks.pemasok_id', '=', 'pemasoks.id')->get();
 
-        // dd($items);
-        // foreach ($items as $row) {
-            
-        //     $pemasok = pemasok::where('id', $row->pemasok_id)->first();
-
-        //     // if ($pemasok) {
-        //     //     $nama_pemasok = $pemasok->nama_pemasok;
-        //     // } else {
-        //     //     $nama_pemasok = "pemasok belum ada";
-        //     // }
-            
-        // }
-
+       
         return view('admin.pemasok.pembelian-index', compact('items'));
     }
 }

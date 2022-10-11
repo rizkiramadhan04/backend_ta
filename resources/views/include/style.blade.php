@@ -6,3 +6,9 @@
 
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+  {{-- fontawesome style --}}
+  <link href="{{ asset('fontawesome/css/fontawesome.css') }}" rel="stylesheet">
+  <link href="{{ asset('fontawesome/css/brands.css') }}" rel="stylesheet">
+  <link href="{{ asset('fontawesome/css/solid.css') }}" rel="stylesheet">
+  <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">

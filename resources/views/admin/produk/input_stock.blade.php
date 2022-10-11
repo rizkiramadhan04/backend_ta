@@ -1,7 +1,30 @@
 @extends('layout.admin')
-@section('title', 'Tambah Produk')
+@section('title', 'Input Stok Produk')
 @section('content')
+
     <div class="container-fluid">
+         <div class="d-sm-flex justify-content-between mb-4 text-center">
+            <h1 class="h3 mb-0 text-gray-800">Input Stok Produk</h1>
+            {{-- <a href="#" class="btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#import">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Import
+            </a> --}}
+        </div>
+
+        <div class="text-center">
+            <div class="btn-group btn-group-toggle mt-2 mb-5 shadow" data-toggle="buttons">
+            <label class="btn btn-outline-secondary">
+                <a href="{{ route('admin.input-stock-produk') }}" style="text-decoration: none; color: white;">
+                    <input type="radio" name="options" id="option2" checked> Input Stok Satuan
+                </a>
+            </label>
+            <label class="btn btn-outline-secondary">
+                <a href="{{ route('admin.input-riwayat-pembelian') }}" style="text-decoration: none; color: black;">
+                    <input type="radio" name="options" id="option3"> Input Produk Masuk
+                </a>
+            </label>
+            </div>
+        </div>
+
         <form action="{{ route('admin.update-stock') }}" method="POST">
             @csrf
             <div class="form-group col-xl-6 col-md-4">

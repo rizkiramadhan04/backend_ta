@@ -14,8 +14,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Produk</th>
-                            <th>Stok Yang Masuk</th>
+                            <th>Nama Pemasok</th>
                             <th>Tgl Barang Masuk</th>
                             <th>Action</th>
                         </tr>
@@ -24,15 +23,14 @@
                         @php
                             $no = 1;
                         @endphp
-                        @forelse ($produk as $obj)
+                        @forelse ($items as $obj)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $obj->nama_produk }}</td>
-                                <td>{{ $obj->jml_masuk }}</td>
+                                <td>{{ $obj->nama_pemasok }}</td>
                                 <td>{{ $obj->tgl_produk_masuk }}</td>
                                 <td>
-                                    <a href="{{ route('admin.update-produk-page', $obj->id) }}" class="btn btn-success">
-                                        <i class="fa fa-pencil-alt"></i>
+                                    <a href="#" class="btn btn-info" onClick="getDataDetail({{  $obj->id }})" >
+                                        <i class="fa-solid fa-circle-info"></i>
                                     </a>
 
                                     <form action="{{ route('admin.delete-produk', $obj->id) }}" method="post"
@@ -54,4 +52,74 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Detail Data Pembelian</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Nama Pemasok :</p>
+            <p id="nama-pemasok"></p>
+            <br>
+            <p>Tanggal Produk Masuk :</p>
+            <p id="tgl_produk_masuk"></p>
+            <br>
+            <hr>
+            <table class="table text-center" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nama Produk</th>
+                        <th>Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    </div>
+
 @endsection
+@push('js')
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function getDataDetail(id) {
+            console.log(id);
+            $.ajax({
+                url: "{{ url('/admin/detail-riwayat') }}",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    // console.log(data);
+                    if (data.id != ) {
+                        
+                    }
+                    // if (data.total > 0) {
+                    //     $('#stock-sblm').val(data.total);
+                    // } else {
+                    //     $('#stock-sblm').val(0);
+                    // }
+                }
+            });
+        }
+    </script>
+@endpush

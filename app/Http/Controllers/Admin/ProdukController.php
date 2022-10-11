@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Produk;
 use App\Models\Pemasok;
+use App\Models\ProdukMasuk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -169,8 +170,14 @@ class ProdukController extends Controller
     }
 
     public function riwayat() {
-        $produk = ProdukMasuk::all();
-        return view('admin.produk.riwayat_pembelian_index', compact('produk'));
+        $items = ProdukMasuk::select('produk_masuks.*', 'pemasoks.nama_pemasok as nama_pemasok')->join('pemasoks', 'produk_masuks.pemasok_id', '=', 'pemasoks.id')->get();
+        return view('admin.produk.riwayat_pembelian_index', compact('items'));
+    }
+
+    public function riwayatInput() {
+        $pemasok = Pemasok::all();
+        $produk  = Produk::all();
+        return view('admin.produk.input-riwayat', compact('produk', 'pemasok'));
     }
 
     public function riwayatSave(Request $request) {
@@ -188,28 +195,46 @@ class ProdukController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.')->withErrors($validator->errors())->withInput();
+            return redirect()->route('admin.produk.input-riwayat')->withErrors($validator->errors())->withInput();
         }
 
         DB::beginTransaction();
         try {
-            
-            $produk = new ProdukMasuk();
-            $produk->produk_id          = $request->produk_id;
-            $produk->jumlah             = $request->jumlah;
+           $produk      = array($request->produk_id);
+           $jumlah      = array($request->jumlah);
+           $total       = count($produk);
+
+           for($i = 0; $i < $total; $i++){
+
+            $produk_id     = implode(',', $produk[$i]);
+            $jml        = implode(',', $jumlah[$i]);
+
+       
+            $produk = new ProdukMasuk;
+            $produk->produk_id          = $produk_id;
+            $produk->jumlah             = $jml;
             $produk->tgl_produk_masuk   = $request->tgl_produk_masuk;
             $produk->pemasok_id         = $request->pemasok_id;
             $produk->save();
 
+            }
+            
+
             DB::commit();
 
-            return redirect()->route();
+            return redirect()->route('admin.riwayat-pembelian');
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             
             DB::rollback();
             return redirect()->route()->withErrors($e->getMessage());
         }
+    }
+
+    public function riwayatDetail(Request $request) {
+        $items = ProdukMasuk::where('id', $request->id)->first();
+
+        return response()->json($items);
     }
 
     public function delete(Request $request) {
