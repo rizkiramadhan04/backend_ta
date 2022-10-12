@@ -53,13 +53,13 @@
                     <h6 class="mt-5">Produk</h6>
                     <div class="row">
                         <div class="col-md-6">
-                            <select class="form-control" id="nama_produk" name="produk_id[]">
+                            <select class="form-control" id="nama_produk" name="nama_produk[]">
                                 <option value="">-- Nama Produk --</option>
                                 @foreach ($produk as $row)
-                                    <option value="{{ $row->id }}">{{ $row->nama_produk }}</option>
+                                    <option value="{{ $row->nama_produk }}">{{ $row->nama_produk }}</option>
                                     @endforeach
                                 </select>
-                                @error('produk_id')
+                                @error('nama_produk')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -96,7 +96,7 @@
             var wrapper = $('.field_wrapper'); //Input field wrapper
             var fieldHTML = '<div class="form-group add"><div class="row">';
             fieldHTML = fieldHTML +
-                '<div class="col-md-6"> <select class="form-control" id="nama_produk" name="produk_id[]"> <option value="">-- Nama Produk --</option> @foreach ($produk as $row) <option value="{{ $row->id }}">{{ $row->nama_produk }}</option> @endforeach</select> @error('produk_id') <div class="invalid-feedback"> {{ $message }} </div> @enderror </div>';
+                '<div class="col-md-6"> <select class="form-control" id="nama_produk" name="nama_produk[]"> <option value="">-- Nama Produk --</option> @foreach ($produk as $row) <option value="{{ $row->nama_produk }}">{{ $row->nama_produk }}</option> @endforeach</select> @error('nama_produk') <div class="invalid-feedback"> {{ $message }} </div> @enderror </div>';
             fieldHTML = fieldHTML +
                 '<div class="col-md-4"><input class="form-control" placeholder="Jumlah" type="number" name="jumlah[]" /></div>';
             fieldHTML = fieldHTML +

@@ -78,7 +78,7 @@ class pemasokController extends Controller
 
         $validator = Validator::make($request->all(), [
             'pemasok_id'        => 'required',
-            'nama_produk'         => 'required',
+            'nama_produk'       => 'required',
             'jumlah'            => 'required',
         ]);
 
@@ -121,8 +121,8 @@ class pemasokController extends Controller
     public function exportPdf($id) {
         $pembelian = Pembelian::find($id);
         if ($pembelian) {
-            $nama_produk = $pembelian->nama_produk;
-            $jml = $pembelian->jumlah;
+            $nama_produk    = $pembelian->nama_produk;
+            $jml            = $pembelian->jumlah;
 
             $produk = explode(',', $nama_produk);
             $jumlah = explode(',', $jml);

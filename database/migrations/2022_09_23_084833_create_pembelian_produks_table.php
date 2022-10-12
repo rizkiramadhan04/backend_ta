@@ -17,7 +17,7 @@ class CreatePembelianProduksTable extends Migration
             $table->bigIncrements('id');
             $table->string('pemasok_id')->nullable();
             $table->text('nama_produk')->nullable();
-            $table->string('jumlah')->nullable();
+            $table->text('jumlah')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

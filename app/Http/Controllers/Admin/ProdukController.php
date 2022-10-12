@@ -153,11 +153,11 @@ class ProdukController extends Controller
         DB::beginTransaction();
         try {
             $produk->update([
-                'nama_produk' => $request->nama_produk,
-                'tgl_produk_masuk' => $request->tgl_produk_masuk,
-                'harga_jual' => $request->harga_jual,
-                'harga_beli' => $request->harga_beli,
-                'jml_keluar' => $request->jml_keluar,
+                'nama_produk'       => $request->nama_produk,
+                'tgl_produk_masuk'  => $request->tgl_produk_masuk,
+                'harga_jual'        => $request->harga_jual,
+                'harga_beli'        => $request->harga_beli,
+                'jml_keluar'        => $request->jml_keluar,
             ]);
 
             DB::commit();
@@ -183,12 +183,12 @@ class ProdukController extends Controller
     public function riwayatSave(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'produk_id'         => 'required',
+            'nama_produk'       => 'required',
             'jumlah'            => 'required',
             'tgl_produk_masuk'  => 'required',
             'pemasok_id'        => 'required',
         ],[
-            'produk_id.required'            => 'Nama produk tidak boleh kosong',
+            'nama_produk.required'          => 'Nama produk tidak boleh kosong',
             'jumlah.required'               => 'Jumlah produk tidak boleh kosong',
             'tgl_produk_masuk.required'     => 'Tanggal tidak boleh kosong',
             'pemasok_id.required'           => 'Nama pemasok tidak boleh kosong',
@@ -200,18 +200,18 @@ class ProdukController extends Controller
 
         DB::beginTransaction();
         try {
-           $produk      = array($request->produk_id);
+           $produk      = array($request->nama_produk);
            $jumlah      = array($request->jumlah);
            $total       = count($produk);
 
            for($i = 0; $i < $total; $i++){
 
-            $produk_id     = implode(',', $produk[$i]);
-            $jml        = implode(',', $jumlah[$i]);
+            $nama_produk    = implode(',', $produk[$i]);
+            $jml            = implode(',', $jumlah[$i]);
 
        
-            $produk = new ProdukMasuk;
-            $produk->produk_id          = $produk_id;
+            $produk                     = new ProdukMasuk;
+            $produk->nama_produk        = $nama_produk;
             $produk->jumlah             = $jml;
             $produk->tgl_produk_masuk   = $request->tgl_produk_masuk;
             $produk->pemasok_id         = $request->pemasok_id;

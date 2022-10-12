@@ -29,7 +29,7 @@
                                 <td>{{ $obj->nama_pemasok }}</td>
                                 <td>{{ $obj->tgl_produk_masuk }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-info" onClick="getDataDetail({{  $obj->id }})" >
+                                    <a href="#" class="btn btn-info" onClick="getDataDetail({{  $obj->id }})" data-toggle="modal" data-target="#staticBackdrop">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </a>
 
@@ -66,7 +66,6 @@
         <div class="modal-body">
             <p>Nama Pemasok :</p>
             <p id="nama-pemasok"></p>
-            <br>
             <p>Tanggal Produk Masuk :</p>
             <p id="tgl_produk_masuk"></p>
             <br>
@@ -101,7 +100,7 @@
         });
 
         function getDataDetail(id) {
-            console.log(id);
+            // console.log(id);
             $.ajax({
                 url: "{{ url('/admin/detail-riwayat') }}",
                 method: "POST",
@@ -109,10 +108,13 @@
                     id: id
                 },
                 success: function(data) {
-                    // console.log(data);
-                    if (data.id != ) {
-                        
-                    }
+                    console.log("Data idnya adalah : ", data);
+                    // if (data.id == '') {
+                    //     $('.modal').modal('hide');
+                    // } else {
+                    //     $('#nama-pemasok').append(data.pemasok_id);
+                    //     $('#tgl_produk_masuk').append(data.tgl_produk_masuk);
+                    // }
                     // if (data.total > 0) {
                     //     $('#stock-sblm').val(data.total);
                     // } else {

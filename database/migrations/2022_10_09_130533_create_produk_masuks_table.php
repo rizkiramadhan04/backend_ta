@@ -16,8 +16,8 @@ class CreateProdukMasuksTable extends Migration
         Schema::create('produk_masuks', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('produk_id')->nullable();
-            $table->string('jumlah')->nullable();
+            $table->text('nama_produk')->nullable();
+            $table->text('jumlah')->nullable();
             $table->date('tgl_produk_masuk')->nullable();
             $table->integer('pemasok_id')->nullable();
 
