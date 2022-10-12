@@ -100,7 +100,7 @@
             fieldHTML = fieldHTML +
                 '<div class="col-md-4"><input class="form-control" placeholder="Jumlah" type="number" name="jumlah[]" /></div>';
             fieldHTML = fieldHTML +
-                '<div class="col-md-2"><a href="javascript:void(0);" class="remove_button btn btn-danger">HAPUS</a></div>';
+                '<div class="col-md-2"><a href="javascript:void(0);" class="remove_button btn btn-danger">Hapus</a></div>';
             fieldHTML = fieldHTML + '</div></div>';
             var x = 1; //Initial field counter is 1
 

@@ -17,6 +17,7 @@
                             <th>Nama Pemasok</th>
                             <th>Nama Produk</th>
                             <th>Jumlah</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -30,17 +31,22 @@
                                 <td>{{ $row->nama_pemasok }}</td>
                                 <td>{{ $row->nama_produk }}</td>
                                 <td>{{ $row->jumlah }}</td>
+                                <td>{{ $row->status }}</td>
                                 <td>
                                     <a href="{{ route('admin.pembelian-pdf', $row->id) }}" class="btn btn-info">
                                         <i class="fa-solid fa-file-pdf"></i>
                                     </a>
+                                    <a href="{{ route('admin.pembelian-pdf', $row->id) }}" class="btn btn-success">
+                                        {{-- <i class="fa-solid fa-file-pdf"></i> --}}
+                                        Terima
+                                    </a>
 
-                                    <form action="#" method="post" class="d-inline">
+                                    {{-- <form action="#" method="post" class="d-inline">
                                         @csrf
                                         <button class="btn btn-danger">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                    </form>
+                                    </form> --}}
                                 </td>
                             @empty
                             <tr>

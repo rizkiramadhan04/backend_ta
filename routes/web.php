@@ -45,6 +45,7 @@ Route::prefix('admin')->middleware('admin')->group( function(){
     Route::get('/input-riwayat-pembelian', 'Admin\ProdukController@riwayatInput')->name('admin.input-riwayat-pembelian');
     Route::post('/save-riwayat', 'Admin\ProdukController@riwayatSave')->name('admin.save-riwayat');
     Route::post('/detail-riwayat', 'Admin\ProdukController@riwayatDetail')->name('admin.detail-riwayat');
+    Route::post('/riwayat-delete', 'Admin\ProdukController@riwayatDelete')->name('admin.delete-riwayat');
     
     //import export
     Route::post('/import-produk', 'Import\ProdukImportController@import')->name('admin.produk.import'); 

@@ -195,7 +195,7 @@ class ProdukController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.produk.input-riwayat')->withErrors($validator->errors())->withInput();
+            return redirect()->route('admin.riwayat-pembelian')->withErrors($validator->errors())->withInput();
         }
 
         DB::beginTransaction();
@@ -243,5 +243,12 @@ class ProdukController extends Controller
         $produk->delete();
 
         return redirect()->route('admin.produk');
+    }
+
+    public function deleteRiwayat(Request $request) {
+        $riwayat = ProdukMasuk::findOrFail($request->id);
+        $produk->delete();
+
+        return redirect()->route('admin.riwayat-pembelian');
     }
 }

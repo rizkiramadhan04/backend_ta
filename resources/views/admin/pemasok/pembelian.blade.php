@@ -52,12 +52,12 @@
                         </div>
                         <div class="col-md-2">
                             <a class="btn btn-success" href="javascript:void(0);" id="add_button"
-                                title="Add field">TAMBAH</a>
+                                title="Add field">Tambah</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-lg btn-primary" type="submit">SIMPAN</button>
+            <button class="btn btn-primary" type="submit">Simpan</button>
         </form>
 
     </div>
@@ -76,7 +76,7 @@
             fieldHTML = fieldHTML +
                 '<div class="col-md-4"><input class="form-control" placeholder="Jumlah" type="number" name="jumlah[]" /></div>';
             fieldHTML = fieldHTML +
-                '<div class="col-md-2"><a href="javascript:void(0);" class="remove_button btn btn-danger">HAPUS</a></div>';
+                '<div class="col-md-2"><a href="javascript:void(0);" class="remove_button btn btn-danger">Hapus</a></div>';
             fieldHTML = fieldHTML + '</div></div>';
             var x = 1; //Initial field counter is 1
 

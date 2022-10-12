@@ -102,15 +102,16 @@ class pemasokController extends Controller
        
             $pembelian = new Pembelian;
             $pembelian->pemasok_id    = $request->pemasok_id;
-            $pembelian->nama_produk     = $produk;
+            $pembelian->nama_produk   = $produk;
             $pembelian->jumlah        = $jml;
+            $pembelian->status        = 0;
             $pembelian->save();
             }
 
 
         DB::commit();
 
-        return redirect()->route('admin.pemasok.pembelian-index');
+        return redirect()->route('admin.pembelian');
             
         } catch (Exception $e) {
             DB::rollback();

@@ -19,7 +19,6 @@
                             <th>Jumlah yang Keluar</th>
                             <th>Harga Beli</th>
                             <th>Harga Jual</th>
-                            <th>Tgl Barang Masuk</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,7 +34,6 @@
                                 <td>{{ $obj->jml_keluar }}</td>
                                 <td>{{ $obj->harga_beli }}</td>
                                 <td>{{ $obj->harga_jual }}</td>
-                                <td>{{ $obj->tgl_produk_masuk }}</td>
                                 <td>
                                     <a href="{{ route('admin.update-produk-page', $obj->id) }}" class="btn btn-success">
                                         <i class="fa fa-pencil-alt"></i>
