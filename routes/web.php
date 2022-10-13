@@ -42,7 +42,7 @@ Route::prefix('admin')->middleware('admin')->group( function(){
 
     //Riwayat Pembelian
     Route::get('/riwayat-pembelian', 'Admin\ProdukController@riwayat')->name('admin.riwayat-pembelian');
-    Route::get('/input-riwayat-pembelian', 'Admin\ProdukController@riwayatInput')->name('admin.input-riwayat-pembelian');
+    Route::get('/input-riwayat-pembelian/{id}', 'Admin\ProdukController@riwayatInput')->name('admin.input-riwayat-pembelian');
     Route::post('/save-riwayat', 'Admin\ProdukController@riwayatSave')->name('admin.save-riwayat');
     Route::post('/detail-riwayat', 'Admin\ProdukController@riwayatDetail')->name('admin.detail-riwayat');
     Route::post('/riwayat-delete', 'Admin\ProdukController@riwayatDelete')->name('admin.delete-riwayat');

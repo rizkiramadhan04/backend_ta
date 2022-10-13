@@ -174,10 +174,11 @@ class ProdukController extends Controller
         return view('admin.produk.riwayat_pembelian_index', compact('items'));
     }
 
-    public function riwayatInput() {
+    public function riwayatInput($id) {
+        $data    = ProdukMasuk::findOrFail($id);
         $pemasok = Pemasok::all();
         $produk  = Produk::all();
-        return view('admin.produk.input-riwayat', compact('produk', 'pemasok'));
+        return view('admin.produk.input-riwayat', compact('produk', 'pemasok', 'data'));
     }
 
     public function riwayatSave(Request $request) {

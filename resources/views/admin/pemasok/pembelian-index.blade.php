@@ -31,13 +31,18 @@
                                 <td>{{ $row->nama_pemasok }}</td>
                                 <td>{{ $row->nama_produk }}</td>
                                 <td>{{ $row->jumlah }}</td>
-                                <td>{{ $row->status }}</td>
+                                <td>
+                                    <?php if ($row->status == 0) { ?>
+                                        <span class="badge badge-danger">Belum diterima</span>
+                                    <?php } else { ?>
+                                        <span class="badge badge-success">Diterima</span>
+                                    <?php } ?>
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.pembelian-pdf', $row->id) }}" class="btn btn-info">
                                         <i class="fa-solid fa-file-pdf"></i>
                                     </a>
-                                    <a href="{{ route('admin.pembelian-pdf', $row->id) }}" class="btn btn-success">
-                                        {{-- <i class="fa-solid fa-file-pdf"></i> --}}
+                                    <a href="{{ route('admin.input-riwayat-pembelian', $row->id) }}" class="btn btn-success">
                                         Terima
                                     </a>
 
