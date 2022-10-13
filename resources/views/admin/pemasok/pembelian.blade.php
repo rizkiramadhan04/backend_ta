@@ -35,7 +35,7 @@
                                     <option value="{{ $row->nama_produk }}">{{ $row->nama_produk }}</option>
                                     @endforeach
                                 </select>
-                                @error('produk_id')
+                                @error('nama_produk')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>

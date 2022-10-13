@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Produk;
 use App\Models\Pemasok;
+use App\Models\Pembelian;
 use App\Models\ProdukMasuk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -174,11 +175,25 @@ class ProdukController extends Controller
         return view('admin.produk.riwayat_pembelian_index', compact('items'));
     }
 
-    public function riwayatInput($id) {
-        $data    = ProdukMasuk::findOrFail($id);
-        $pemasok = Pemasok::all();
-        $produk  = Produk::all();
-        return view('admin.produk.input-riwayat', compact('produk', 'pemasok', 'data'));
+    public function riwayatInput(Request $request, $id) {
+        // dd($id);
+        $data    = Pembelian::find($id);
+        $nama_produk = explode(',',$data->nama_produk);
+        $jumlah = explode(',',$data->jumlah);
+        $count_data = count($nama_produk);
+        $pemasok = Pemasok::find($data->pemasok_id);
+        $nama_pemasok = $pemasok->nama_pemasok;
+
+        $data_array = [
+            'nama_produk' => $nama_produk,
+            'jumlah'    => $jumlah,
+            'status' => $data->status,
+            'created_at' => date("d-m-Y", strtotime($data->created_at)),
+            // 'nama_pemasok' => $nama_pemasok->nama_pemasok,
+        ];
+        // dd($data_array);
+        
+        return view('admin.produk.input-riwayat', compact('data_array', 'count_data', 'nama_pemasok'));
     }
 
     public function riwayatSave(Request $request) {

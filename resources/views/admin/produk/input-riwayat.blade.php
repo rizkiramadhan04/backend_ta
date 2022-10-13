@@ -27,21 +27,17 @@
 
             <div class="field_wrapper">
                 <div class="form-group">
-                    <label for="pemasok_id">Nama Pemasok</label>
-                    @foreach ($pemasok as $row)
+                    <label for="nama_pemasok">Nama Pemasok</label>
                     <div class="col-md-6">
-                        <select class="form-control" id="nama_produk" name="pemasok_id">
-                            <option value="">-- Nama Pemasok --</option>
-                            <option value="{{ $row->id }}">{{ $row->nama_pemasok }}</option>
-                        </select>
-                        @error('pemasok_id')
+                        <input type="text" class="form-control @error('nama_pemasok') is-invalid @enderror" id="nama_pemasok"
+                    aria-describedby="nameProduk" name="nama_pemasok" value="{{ $nama_pemasok }}">
+                        @error('nama_pemasok')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
-                    @endforeach
-                    <label for="tgl_produk_masuk" class="mt-3">Tanggal Produk Masuk</label>
+                    {{-- <label for="tgl_produk_masuk" class="mt-3">Tanggal Produk Masuk</label>
                     <div class="col-md-6">
                     <input class="form-control" type="date" name="tgl_produk_masuk"/>
                         @error('tgl_produk_masuk')
@@ -78,7 +74,7 @@
                             <a class="btn btn-success" href="javascript:void(0);" id="add_button"
                                 title="Add field">Tambah</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <button class="btn btn-primary mt-3" type="submit">Simpan</button>
