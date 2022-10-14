@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="d-sm-flex justify-content-between mb-4 text-center">
+        {{-- <div class="d-sm-flex justify-content-between mb-4 text-center">
             <h1 class="h3 mb-0 text-gray-800">Input Produk Masuk</h1>
         </div>
 
@@ -20,7 +20,7 @@
                 </a>
             </label>
             </div>
-        </div>
+        </div> --}}
 
         <form method="POST" action="{{ route('admin.save-riwayat') }}">
             @csrf
@@ -37,33 +37,36 @@
                             </div>
                         @enderror
                     </div>
-                    {{-- <label for="tgl_produk_masuk" class="mt-3">Tanggal Produk Masuk</label>
+                    <label for="tgl_produk_masuk" class="mt-3">Tanggal Produk Masuk</label>
                     <div class="col-md-6">
-                    <input class="form-control" type="date" name="tgl_produk_masuk"/>
+                    <input class="form-control" type="date" name="tgl_produk_masuk" value="{{ $tanggal_masuk }}"/>
                         @error('tgl_produk_masuk')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
-                    <h6 class="mt-5">Produk</h6>
+
+                    
+                    @php
+                    $no = 1;
+                    @endphp
+                        <h6 class="mt-5">Data Produk</h6>
+                    <?php for($i=0; $i < $count_data; $i++) {?>
+                    
                     <div class="row">
-                        <div class="col-md-6">
-                            <select class="form-control" id="nama_produk" name="nama_produk[]">
-                                <option value="">-- Nama Produk --</option>
-                                @foreach ($produk as $row)
-                                    <option value="{{ $row->nama_produk }}">{{ $row->nama_produk }}</option>
-                                    @endforeach
-                                </select>
+                        <div class="col-md-6 mt-3">
+                               <input class="form-control" placeholder="Nama Produk" type="text" name="nama_produk[]"
+                                value="{{ $nama_produk[$i] }}" />
                                 @error('nama_produk')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-3">
                             <input class="form-control" placeholder="Jumlah" type="number" name="jumlah[]"
-                                value="" />
+                                value="{{ $jumlah[$i] }}" />
                             @error('jumlah')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -71,10 +74,13 @@
                             @enderror
                         </div>
                         <div class="col-md-2">
-                            <a class="btn btn-success" href="javascript:void(0);" id="add_button"
+                            <a class="btn btn-success mt-3" href="javascript:void(0);" id="add_button"
                                 title="Add field">Tambah</a>
                         </div>
-                    </div> --}}
+                    </div>
+                    
+                    <?php } ?>
+
                 </div>
             </div>
             <button class="btn btn-primary mt-3" type="submit">Simpan</button>
@@ -83,7 +89,7 @@
     </div>
 @endsection
 
-@push('js')
+{{-- @push('js')
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -117,4 +123,4 @@
             });
         });
     </script>
-@endpush
+@endpush --}}
