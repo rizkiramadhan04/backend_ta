@@ -183,16 +183,7 @@ class ProdukController extends Controller
         $count_data         = count($nama_produk);
         $pemasok            = Pemasok::find($data->pemasok_id);
         $nama_pemasok       = $pemasok->nama_pemasok;
-        $tanggal_masuk      = date("d-m-Y", strtotime($data->created_at));
-
-        // $data_array = [
-        //     'nama_produk' => $nama_produk,
-        //     'jumlah'    => $jumlah,
-        //     'status' => $data->status,
-        //     'created_at' => date("d-m-Y", strtotime($data->created_at)),
-        //     // 'nama_pemasok' => $nama_pemasok->nama_pemasok,
-        // ];
-        // dd($data_array);
+        $tanggal_masuk      = date("Y-m-d", strtotime($data->created_at));
         
         return view('admin.produk.input-riwayat', compact('count_data', 'nama_pemasok', 'nama_produk', 'jumlah', 'tanggal_masuk'));
     }
