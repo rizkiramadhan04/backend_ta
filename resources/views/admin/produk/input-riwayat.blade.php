@@ -35,8 +35,8 @@
                             </div> --}}
                         {{-- <input type="text" class="form-control" aria-label="Text input with checkbox" value="{{ $nama_produk[$i] }}"> --}}
                         <div class="col-md-6 mt-3">
-                            <input class="form-control" placeholder="Nama Produk" type="text" name="nama_produk[]"
-                                value="{{ $nama_produk[$i] }}" id="nama_produk{{ $no++ }}" />
+                            <input class="form-control nama_produk" placeholder="Nama Produk" type="text"
+                                name="nama_produk[]" value="{{ $nama_produk[$i] }}" id="nama_produk{{ $i }}" />
                             @error('nama_produk')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -44,8 +44,8 @@
                             @enderror
                         </div>
                         <div class="col-md-4 mt-3">
-                            <input class="form-control" placeholder="Jumlah" type="number" name="jumlah[]"
-                                value="{{ $jumlah[$i] }}" id="jumlah{{ $no++ }}" />
+                            <input class="form-control jumlah" placeholder="Jumlah" type="number" name="jumlah[]"
+                                value="{{ $jumlah[$i] }}" id="jumlah{{ $i }}" />
                             @error('jumlah')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-check mr-sm-2 mt-4">
-                            <input class="form-check-input" type="checkbox" id="check{{ $no++ }}">
+                            <input class="form-check-input" type="checkbox" id="check{{ $i }}">
                             <label class="form-check-label" for="inlineFormCheck">
                                 Sesuai
                             </label>
@@ -82,20 +82,23 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            for (var i = 1; i < 10; i++) {
-                console.log("Hallo ", i);
+            var jml_field = $('.nama_produk').length;
+            // console.log(jml_field);
+
+            for (var i = 0; i < jml_field; i++) {
+                $("#check" + [i]).click(function() {
+                    console.log("#check" + [i]);
+                    if ($("#check" + [i]).is(":checked")) {
+                        console.log("#check" + i, "#nama_produk" + i, "#jumlah" + i);
+                        // $("#nama_produk" + i).attr("disabled", true);
+                        // $("#jumlah" + i).attr("disabled", true);
+                    } else {
+                        console.log("Gagal");
+                        // $("#nama_produk" + i).attr("disabled", false);
+                        // $("#jumlah" + i).attr("disabled", false);
+                    }
+                });
             }
-
-            $("#check6").click(function() {
-                if ($("#check6").is(":checked")) {
-                    $("#nama_produk4").attr("disabled", true);
-                    $("#jumlah5").attr("disabled", true);
-                } else {
-                    $("#nama_produk4").attr("disabled", false);
-                    $("#jumlah5").attr("disabled", false);
-                }
-            });
-
 
         });
     </script>
