@@ -48,6 +48,9 @@ class ProdukController extends Controller
             return redirect()->route('admin.create-produk-page')->withInput()->withErrors($validator);
         }
         
+        $mt_rand = mt_rand(100000, 999999);
+        $kode_produk = 'TS9-'.$mt_rand;
+
         DB::beginTransaction();
      try {
         $produk = new Produk();
@@ -59,6 +62,7 @@ class ProdukController extends Controller
         $produk->jml_keluar = 0;
         $produk->total = $produk->jml_masuk - $produk->jml_keluar;
         $produk->pemasok_id = $request->pemasok_id;
+        $produk->kode_produk = $kode_produk;
 
         $produk->save();
         DB::commit();

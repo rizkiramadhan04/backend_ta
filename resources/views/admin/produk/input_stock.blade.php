@@ -10,7 +10,7 @@
             </a> --}}
         </div>
 
-        <div class="text-center">
+        {{-- <div class="text-center">
             <div class="btn-group btn-group-toggle mt-2 mb-5 shadow" data-toggle="buttons">
             <label class="btn btn-outline-secondary">
                 <a href="{{ route('admin.input-stock-produk') }}" style="text-decoration: none; color: white;">
@@ -23,7 +23,7 @@
                 </a>
             </label>
             </div>
-        </div>
+        </div> --}}
 
         <form action="{{ route('admin.update-stock') }}" method="POST">
             @csrf
